@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YR · Mes 3 · Control Operativo · Corte 01</title>
+<title>YR · Mes 3 · Control Operativo · Corte 02</title>
 <style>
 :root{
   --navy:#183653;
@@ -177,8 +177,8 @@ h3{font-size:26px}
   <section class="hero" id="overview">
     <div class="kicker">Control Tower · Corte operativo 01</div>
     <h1>Avance Mes 3</h1>
-    <p class="lead">Primer cierre operativo continuo. Este tablero se actualizará al final de cada jornada de trabajo para reflejar avance real, activos vivos, pendientes, decisiones y siguiente movimiento.</p>
-    <div class="date-chip"><span class="dot"></span> Viernes 11 de septiembre de 2026 · Cierre de Semana 2</div>
+    <p class="lead">Cierre final del viernes. Este tablero refleja el estado real del proyecto al terminar la jornada: activos vivos, decisiones cerradas, pendientes y siguiente movimiento.</p>
+    <div class="date-chip"><span class="dot"></span> Viernes 11 de septiembre de 2026 · Cierre final del día · Semana 2</div>
 
     <div class="metrics">
       <div class="metric main">
@@ -200,12 +200,12 @@ h3{font-size:26px}
       <div class="metric">
         <div class="label">Dependencias críticas</div>
         <div class="value">3</div>
-        <div class="sub">Modelo EDI · Diagnóstico · seguimiento de ejecución YouTube.</div>
+        <div class="sub">Aprobación EDI · activación Public API · seguimiento de ejecución YouTube.</div>
       </div>
     </div>
 
     <div class="actions">
-      <a class="btn primary" href="https://cm-mkt.github.io/yuriramirez/mes3/edi/" target="_blank" rel="noopener">Abrir propuesta EDI</a>
+      <a class="btn primary" href="https://cm-mkt.github.io/mhmktventas/yuri/mes3/edi" target="_blank" rel="noopener">Abrir propuesta EDI</a>
       <button class="btn secondary" id="copySummary">Copiar resumen del cierre</button>
     </div>
   </section>
@@ -269,6 +269,10 @@ h3{font-size:26px}
           <div class="item"><div class="item-row"><div><strong>Dos modelos EDI completos</strong><br><span>Experiencia Guiada + Yuri / Workshop 100% Live Yuri.</span></div><span class="owner ct">Control Tower</span></div></div>
           <div class="item"><div class="item-row"><div><strong>Customer journey completo de ambos modelos</strong><br><span>Adquisición → compra → experiencia → implementación → siguiente paso.</span></div><span class="owner ct">Control Tower</span></div></div>
           <div class="item"><div class="item-row"><div><strong>Decision Brief listo para Yuri</strong><br><span>Material visual para decidir sin necesidad de entrar a detalle técnico.</span></div><span class="owner ct">Control Tower</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Funnel Diagnóstico Architecture V1.1 cerrada</strong><br><span>Qualification, routing, CTA, handoffs, measurement y edge cases aprobados. Semana 1 llega a 100%.</span></div><span class="owner ct">Cerrado</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Kajabi Target Architecture V1.1 aprobada</strong><br><span>Diagnóstico incorporado a la arquitectura existente sin rediseñar Foundation.</span></div><span class="owner ct">Cerrado</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Technical Preflight + writeback definidos</strong><br><span>Arquitectura objetivo: Form → Webhook → Routing Engine → Public API → Kajabi.</span></div><span class="owner ct">Cerrado</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Build Fase 1 iniciado</strong><br><span>Ya comenzó la creación de Custom Fields para el Diagnóstico.</span></div><span class="owner ct">En construcción</span></div></div>
         </div>
       </div>
 
@@ -323,9 +327,10 @@ h3{font-size:26px}
       <div class="panel">
         <h3>Pendiente Control Tower</h3>
         <div class="list">
-          <div class="item"><div class="item-row"><div><strong>Cerrar arquitectura funcional del Diagnóstico</strong><br><span>Es el único pendiente real para cerrar Semana 1 al 100%: propósito, preguntas, scoring/calificación, resultado, CTA y routing.</span></div><span class="owner ct">Carel</span></div></div>
-          <div class="item"><div class="item-row"><div><strong>Convertir modelo EDI aprobado en backlog técnico</strong><br><span>Pages, Forms, Checkout, Thank You, tags, segmentos, emails y follow-up.</span></div><span class="owner ct">Carel</span></div></div>
-          <div class="item"><div class="item-row"><div><strong>Handoff final a Kajabi Architect</strong><br><span>Después de aprobación del delivery para evitar construir dos veces.</span></div><span class="owner ct">Carel</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Completar Build Fase 1 · Data Foundation</strong><br><span>Terminar Custom Fields, señales/tags, segmentos, Data Dictionary y dataset de QA.</span></div><span class="owner ct">Carel</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Activar Public API add-on</strong><br><span>Pendiente operativo con Kajabi Support. El target técnico ya está aprobado.</span></div><span class="owner ct">Kajabi</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Ejecutar API writeback smoke test</strong><br><span>Después de activación: Contact read → Custom Field writeback → Tag add/remove → webhook end-to-end.</span></div><span class="owner ct">Carel</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Convertir modelo EDI aprobado en backlog técnico</strong><br><span>En cuanto Yuri seleccione delivery: Pages, access, sequences, follow-up y QA específico.</span></div><span class="owner ct">Carel</span></div></div>
           <div class="item"><div class="item-row"><div><strong>Auditoría audiovisual EDI</strong><br><span>Necesaria si se aprueba Experiencia Guiada + Yuri.</span></div><span class="owner ct">Material</span></div></div>
         </div>
       </div>
@@ -334,7 +339,7 @@ h3{font-size:26px}
     <div class="callout">
       <div>
         <strong>Ruta crítica inmediata</strong>
-        <p>El siguiente salto fuerte depende de dos decisiones: modelo EDI aprobado por Yuri y cierre del Funnel Diagnóstico.</p>
+        <p>El siguiente salto fuerte depende de dos frentes: aprobación del modelo EDI por Yuri y activación técnica de Public API para completar el writeback del Diagnóstico.</p>
       </div>
       <div class="tag">RUTA CRÍTICA</div>
     </div>
@@ -383,11 +388,11 @@ h3{font-size:26px}
       </div>
       <div class="panel">
         <h3>2 · Diagnóstico</h3>
-        <p>Cerrar el mapa funcional del Funnel Diagnóstico para llevar Semana 1 a 100%.</p>
+        <p>Completar Data Foundation y dejar listo el smoke test de Public API para arrancar routing/writeback.</p>
       </div>
       <div class="panel">
         <h3>3 · Ejecución real</h3>
-        <p>Registrar desempeño inicial de campañas y confirmar ejecución de banner, Stories y promoción orgánica de YouTube.</p>
+        <p>Registrar desempeño inicial de campañas y confirmar banner, Stories/promoción orgánica y status de activación Public API.</p>
       </div>
     </div>
 
@@ -396,7 +401,7 @@ h3{font-size:26px}
 
   <div class="footer">
     <span>YR · Mes 3 · Control Operativo</span>
-    <span>Última actualización: 11 Sep 2026 · Corte 01</span>
+    <span>Última actualización: 11 Sep 2026 · Corte 02</span>
   </div>
 </div>
 
@@ -415,17 +420,17 @@ const PROJECT_DATA = {
     {
       label:"Semana 1",
       title:"Arquitectura + Kajabi",
-      desc:"Kajabi y Target Architecture completados. Único pendiente para cerrar la semana al 100%: arquitectura funcional del Funnel Diagnóstico.",
-      progress:95,
+      desc:"Kajabi Foundation + Target Architecture + Funnel Diagnóstico Architecture V1.1 cerrados. Semana 1 completada.",
+      progress:100,
       weight:20,
-      status:"Casi cerrada",
+      status:"Cerrada",
       statusType:"done"
     },
     {
       label:"Semana 2",
       title:"Construcción base",
-      desc:"EDI, customer journeys y estrategia de YouTube ya definidos. Falta decisión de Yuri para bajar build técnico específico; continúa construcción del Diagnóstico.",
-      progress:65,
+      desc:"EDI y customer journeys definidos. Diagnóstico pasó a implementation: Target Architecture V1.1, Technical Preflight, writeback y Public API decididos; Custom Fields ya están en creación.",
+      progress:75,
       weight:28,
       status:"En cierre",
       statusType:"progress"
@@ -461,7 +466,7 @@ const PROJECT_DATA = {
   log: [
     {
       date:"11 Sep 2026",
-      title:"Corte 01 · Cierre de Semana 2",
+      title:"Corte 02 · Cierre de Semana 2",
       text:"Dos campañas de posicionamiento ya activas. Evaluación + checklist de YouTube entregados. Dos modelos EDI y customer journeys completos listos para decisión de Yuri."
     },
     {
@@ -511,33 +516,40 @@ function render(){
     </div>
   `).join("");
 
-  const summary = `YR · MES 3 · CIERRE OPERATIVO 11 SEP 2026
+  const summary = `YR · MES 3 · CIERRE FINAL · 11 SEP 2026
 
 AVANCE TOTAL ESTIMADO: ${pct(overall)}
-MOMENTO: Cierre Semana 2
+MOMENTO: Cierre final de viernes · Semana 2
+
+CIERRES DE HOY:
+- Semana 1 · Arquitectura = 100%.
+- Funnel Diagnóstico Architecture V1.1 cerrada.
+- Kajabi Target Architecture V1.1 aprobada.
+- Technical Preflight cerrado.
+- Public API elegida como writeback target.
+- Build Fase 1 iniciado: Custom Fields en creación.
 
 ACTIVOS:
 - 2 campañas de posicionamiento activas.
-- Kajabi Target Architecture V1 aprobada.
-- EDI con dos modelos completos y Decision Brief listo.
+- EDI con dos modelos completos y Decision Brief listo para Yuri.
 - Evaluación + checklist YouTube entregados.
 
-SEMANA 1:
-95% — Kajabi completo. Solo falta cerrar arquitectura funcional del Funnel Diagnóstico.
-
 SEMANA 2:
-65% — EDI, customer journeys y YouTube avanzados. Falta decisión Yuri + build técnico específico.
+75% — ya pasamos de arquitectura a implementación. Falta completar Data Foundation, activar Public API, smoke test y continuar build.
 
 PENDIENTES CLAVE:
 - Yuri: Historias Destacadas.
 - Yuri: aprobar modelo EDI y decisiones del brief.
 - Marissa: fecha / cambio de banner YouTube.
 - Seguimiento: validar Stories y promoción orgánica del video.
-- Control Tower: cerrar Funnel Diagnóstico.
-- Después de aprobación EDI: backlog técnico + Kajabi build + landing + checkout + emails + QA.
+- Kajabi: activar Public API add-on.
+- Control Tower: completar Data Foundation + smoke test + siguiente fase de build.
+
+SIGUIENTE RUTA:
+Custom Fields/Tags/Segments/Data Dictionary → Public API activation → smoke test → routing/writeback → landing/form/QA.
 
 NOTA:
-El transcript completo del evento llegó el 10 Sep y desbloqueó el cierre de arquitectura EDI durante el 11 Sep.`;
+El viernes cerró con un cambio de fase: Diagnóstico dejó de ser arquitectura pendiente y ya está en construcción técnica.`;
 
   document.getElementById("copySummary").addEventListener("click", async function(){
     try{
