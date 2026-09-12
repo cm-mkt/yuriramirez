@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YR · Mes 3 · Control Operativo · Corte 01</title>
+<style>
+:root{
+  --navy:#183653;
+  --navy2:#284d72;
+  --cream:#f5efe8;
+  --paper:#ffffff;
+  --ink:#1f2f43;
+  --body:#5b6777;
+  --peach:#e8bda5;
+  --gold:#c79a4d;
+  --line:#ddd3c9;
+  --soft:#faf7f3;
+  --green:#2f6b4f;
+  --green-bg:#e9f2ed;
+  --amber:#8b6a28;
+  --amber-bg:#f7f0dd;
+  --red:#8c493d;
+  --red-bg:#f7e9e5;
+  --blue-bg:#e9f0f6;
+  --shadow:0 16px 38px rgba(25,54,83,.09);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#e9e4de;color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  line-height:1.45;
+}
+.page{max-width:1480px;margin:0 auto;background:var(--cream);min-height:100vh;box-shadow:0 0 70px rgba(20,32,45,.08)}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(245,239,232,.95);backdrop-filter:blur(18px);border-bottom:1px solid rgba(24,54,83,.08)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:12px 6.2%}
+.brand{font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
+.navlinks{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.navlinks a{text-decoration:none;background:#fff;border:1px solid #dfd6cd;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#607083}
+.navlinks a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+section{padding:52px 6.2%}
+.hero{padding-top:56px;background:radial-gradient(circle at 91% -6%,rgba(232,189,165,.16),transparent 26%),var(--cream)}
+.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;color:#c18a6f;margin-bottom:12px}
+h1,h2,h3{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-weight:500;letter-spacing:-.025em}
+h1{font-size:clamp(46px,5vw,78px);line-height:1.02}
+h2{font-size:clamp(30px,3.2vw,48px);line-height:1.08}
+h3{font-size:26px}
+.lead{font-size:18px;color:var(--body);max-width:920px;margin:18px 0 0}
+.date-chip{display:inline-flex;align-items:center;gap:8px;margin-top:22px;border:1px solid #d9cfc4;background:#fff;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;color:#657383}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+.metrics{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:14px;margin-top:34px}
+.metric{background:#fff;border:1px solid #dfd6cd;border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+.metric.main{background:var(--navy);color:#fff;border-color:var(--navy)}
+.metric .label{font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#8a96a2}
+.metric.main .label{color:#c9d4df}
+.metric .value{font-size:34px;font-weight:900;margin-top:6px;letter-spacing:-.035em}
+.metric.main .value{font-size:46px}
+.metric .sub{font-size:12px;color:#7a8795;margin-top:6px}
+.metric.main .sub{color:#dbe4ed}
+.progress-shell{margin-top:14px;height:11px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden}
+.progress-shell.light{background:#ebe5df}
+.progress-bar{height:100%;border-radius:999px;background:var(--peach);width:0;transition:width .6s ease}
+.progress-bar.navy{background:var(--navy)}
+
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.section-head p{margin:0;color:var(--body);max-width:740px}
+.badge{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+.badge.done{background:var(--green-bg);color:var(--green)}
+.badge.progress{background:var(--amber-bg);color:var(--amber)}
+.badge.wait{background:var(--red-bg);color:var(--red)}
+.badge.future{background:#edf0f2;color:#687684}
+.status-dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+.live-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.live-card{background:#fff;border:1px solid #dfd6cd;border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.live-card .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.live-card strong{font-size:15px;line-height:1.25}
+.live-card p{font-size:12px;color:var(--body);margin:8px 0 0}
+.live-status{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;border-radius:999px;padding:5px 8px;white-space:nowrap}
+.live-status.on{background:var(--green-bg);color:var(--green)}
+.live-status.ready{background:var(--blue-bg);color:var(--navy)}
+.live-status.follow{background:var(--amber-bg);color:var(--amber)}
+
+.phase-list{display:grid;gap:14px}
+.phase{background:#fff;border:1px solid #dfd5ca;border-radius:20px;padding:20px 22px;display:grid;grid-template-columns:165px 1fr 190px;gap:22px;align-items:center}
+.phase-name{font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+.phase-title{font-size:18px;font-weight:900;color:#202d3d}
+.phase-desc{font-size:13px;color:var(--body);margin-top:5px}
+.phase-right{text-align:right}
+.phase-pct{font-size:22px;font-weight:900;color:var(--navy)}
+.phase .progress-shell{height:8px;margin-top:8px}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel{background:#fff;border:1px solid #dfd6cd;border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+.panel h3{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:18px;font-weight:900;letter-spacing:-.01em}
+.panel p{color:var(--body);font-size:13px}
+.list{display:grid;gap:10px;margin-top:14px}
+.item{border:1px solid #e4ddd6;background:#fcfaf8;border-radius:15px;padding:13px 14px}
+.item-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.item strong{font-size:13px;line-height:1.3}
+.item span{font-size:11px;color:#7b8794}
+.owner{white-space:nowrap;font-size:9px!important;font-weight:900!important;letter-spacing:.1em;text-transform:uppercase;background:#eef1f4;color:#607083!important;border-radius:999px;padding:5px 8px}
+.owner.yuri{background:#f4e4dc;color:#8c5f48!important}
+.owner.ct{background:#e5edf4;color:#315774!important}
+.owner.marissa{background:#f4eddc;color:#735c28!important}
+
+.callout{background:var(--navy);color:#fff;border-radius:22px;padding:22px;margin-top:18px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.callout strong{font-size:18px}
+.callout p{margin:5px 0 0;color:#dce5ed;font-size:13px}
+.callout .tag{background:var(--peach);color:var(--navy);font-weight:900;border-radius:999px;padding:9px 12px;font-size:11px}
+
+.path{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.node{padding:9px 12px;border-radius:13px;background:#fff;border:1px solid #dfd6cd;font-size:11px;font-weight:900;color:#42536a}
+.node.hot{background:var(--peach);border-color:var(--peach);color:var(--navy)}
+.arrow{color:#9aa4ad;font-weight:900}
+
+.timeline{display:grid;gap:0;margin-top:16px}
+.log{display:grid;grid-template-columns:130px 22px 1fr;gap:12px;align-items:start}
+.log-date{font-size:11px;font-weight:900;color:#718090;padding-top:2px}
+.log-line{position:relative;min-height:58px}
+.log-line:before{content:"";position:absolute;left:9px;top:6px;bottom:-10px;width:2px;background:#ddd5ce}
+.log:last-child .log-line:before{display:none}
+.log-line:after{content:"";position:absolute;left:5px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid #fff;box-shadow:0 0 0 1px #d6c9bb}
+.log-card{padding-bottom:16px}
+.log-card strong{font-size:13px}
+.log-card p{font-size:12px;color:var(--body);margin:4px 0 0}
+
+.small-note{margin-top:12px;font-size:11px;color:#778493}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:11px 15px;font-weight:900;font-size:11px;cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.secondary{background:#fff;color:var(--navy);border:1px solid #d9d0c7}
+.footer{padding:28px 6.2% 42px;border-top:1px solid #ddd5cd;color:#7a8794;font-size:11px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+@media(max-width:1080px){
+  .live-grid{grid-template-columns:1fr 1fr}
+  .metrics{grid-template-columns:1fr 1fr}
+  .phase{grid-template-columns:1fr}
+  .phase-right{text-align:left}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  section{padding:40px 20px}
+  .nav{padding:12px 20px}
+  .navlinks{display:none}
+  .metrics,.live-grid{grid-template-columns:1fr}
+  h1{font-size:44px}
+  .log{grid-template-columns:90px 18px 1fr}
+}
+@media print{
+  .topbar,.actions{display:none!important}
+  .page{box-shadow:none}
+  section{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">YR · Mes 3 · Control Operativo</div>
+      <div class="navlinks">
+        <a href="#overview">Resumen</a>
+        <a href="#live">Activos</a>
+        <a href="#phases">Semanas</a>
+        <a href="#week2">Cierre actual</a>
+        <a href="#pending">Pendientes</a>
+        <a href="#log">Bitácora</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero" id="overview">
+    <div class="kicker">Control Tower · Corte operativo 01</div>
+    <h1>Avance Mes 3</h1>
+    <p class="lead">Primer cierre operativo continuo. Este tablero se actualizará al final de cada jornada de trabajo para reflejar avance real, activos vivos, pendientes, decisiones y siguiente movimiento.</p>
+    <div class="date-chip"><span class="dot"></span> Viernes 11 de septiembre de 2026 · Cierre de Semana 2</div>
+
+    <div class="metrics">
+      <div class="metric main">
+        <div class="label">Avance total estimado</div>
+        <div class="value" id="overallPct">—</div>
+        <div class="sub">Ponderado contra todo el proyecto Mes 3. No es avance por calendario.</div>
+        <div class="progress-shell"><div class="progress-bar" id="overallBar"></div></div>
+      </div>
+      <div class="metric">
+        <div class="label">Momento actual</div>
+        <div class="value">Semana 2</div>
+        <div class="sub">Cierre de arquitectura de producto + construcción base.</div>
+      </div>
+      <div class="metric">
+        <div class="label">Campañas activas</div>
+        <div class="value">2</div>
+        <div class="sub">Posicionamiento ya operando antes de la Semana 3 formal.</div>
+      </div>
+      <div class="metric">
+        <div class="label">Dependencias críticas</div>
+        <div class="value">3</div>
+        <div class="sub">Modelo EDI · Diagnóstico · seguimiento de ejecución YouTube.</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href="https://cm-mkt.github.io/mhmktventas/yuri/mes3/edi" target="_blank" rel="noopener">Abrir propuesta EDI</a>
+      <button class="btn secondary" id="copySummary">Copiar resumen del cierre</button>
+    </div>
+  </section>
+
+  <section id="live">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Activos vivos hoy</div>
+        <h2>Qué ya está operando</h2>
+      </div>
+      <p>Además de documentos y arquitectura, aquí se refleja lo que ya está activo o listo para uso real.</p>
+    </div>
+
+    <div class="live-grid">
+      <div class="live-card">
+        <div class="top"><strong>Campaña de posicionamiento 01</strong><span class="live-status on">Activa</span></div>
+        <p>Campaña ya funcionando. Debe leerse y optimizarse con datos reales en los siguientes cortes.</p>
+      </div>
+      <div class="live-card">
+        <div class="top"><strong>Campaña de posicionamiento 02</strong><span class="live-status on">Activa</span></div>
+        <p>Segunda campaña activa. Semana 3 ya tiene activación adelantada por este frente.</p>
+      </div>
+      <div class="live-card">
+        <div class="top"><strong>EDI · Decision Brief</strong><span class="live-status ready">Listo</span></div>
+        <p>Dos modelos completos para que Yuri apruebe la experiencia que se construirá.</p>
+      </div>
+      <div class="live-card">
+        <div class="top"><strong>YouTube · Evaluación + checklist</strong><span class="live-status follow">Seguimiento</span></div>
+        <p>Estrategia entregada: SEO, capítulos, enlaces, CTA, checklist de publicación y promoción orgánica.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="phases">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Avance por fase</div>
+        <h2>Proyecto completo</h2>
+      </div>
+      <p>Los porcentajes reflejan entregables cerrados y trabajo real. Una semana puede avanzar antes de tiempo si ya existen activos funcionando.</p>
+    </div>
+    <div class="phase-list" id="phaseList"></div>
+  </section>
+
+  <section id="week2" style="background:#fff">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Cierre actual · Semana 2</div>
+        <h2>Qué se avanzó realmente</h2>
+      </div>
+      <span class="badge progress"><span class="status-dot"></span> Semana 2 en cierre</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Arquitectura / producto</h3>
+        <div class="list">
+          <div class="item"><div class="item-row"><div><strong>Kajabi · auditoría base cerrada</strong><br><span>Ya no hay inventario histórico pendiente como condición de avance.</span></div><span class="owner ct">Control Tower</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Kajabi Target Architecture V1 aprobada</strong><br><span>Foundation, lifecycle, journeys, naming y orden de construcción definidos.</span></div><span class="owner ct">Control Tower</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Auditoría EDI cerrada</strong><br><span>Core IP, ejercicios, outputs, rol de Yuri y participante suficientemente definidos.</span></div><span class="owner ct">Control Tower</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Dos modelos EDI completos</strong><br><span>Experiencia Guiada + Yuri / Workshop 100% Live Yuri.</span></div><span class="owner ct">Control Tower</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Customer journey completo de ambos modelos</strong><br><span>Adquisición → compra → experiencia → implementación → siguiente paso.</span></div><span class="owner ct">Control Tower</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Decision Brief listo para Yuri</strong><br><span>Material visual para decidir sin necesidad de entrar a detalle técnico.</span></div><span class="owner ct">Control Tower</span></div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Posicionamiento / distribución</h3>
+        <div class="list">
+          <div class="item"><div class="item-row"><div><strong>2 campañas de posicionamiento ya activas</strong><br><span>Esto adelanta parte de la Semana 3.</span></div><span class="owner ct">Activo</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Evaluación externa de YouTube entregada</strong><br><span>Canal revisado con foco en autoridad, posicionamiento y conexión con el ecosistema.</span></div><span class="owner ct">Entregado</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Checklist de publicación YouTube entregado</strong><br><span>Título, thumbnail, descripción, capítulos SEO, enlaces, CTA, cards/end screen y comentario fijado.</span></div><span class="owner ct">Entregado</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Plan orgánico para potenciar cada video</strong><br><span>Stories, clips/Reels, preguntas y recirculación durante la semana.</span></div><span class="owner ct">Entregado</span></div></div>
+        </div>
+
+        <div class="callout">
+          <div>
+            <strong>Desbloqueo clave de las últimas 24 horas</strong>
+            <p>El transcript completo del evento se recibió el 10 de septiembre. Eso permitió cerrar la auditoría real de EDI y definir durante el 11 de septiembre las dos rutas completas para decisión de Yuri.</p>
+          </div>
+          <div class="tag">EDI DESBLOQUEADO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pending">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Pendientes y decisiones</div>
+        <h2>Qué falta para seguir</h2>
+      </div>
+      <p>Separado por responsable para distinguir construcción pendiente, ejecución del equipo y decisiones que necesitan a Yuri.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="panel">
+        <h3>Pendiente de Yuri</h3>
+        <div class="list">
+          <div class="item"><div class="item-row"><div><strong>Historias destacadas</strong><br><span>Único pendiente del pre-arranque.</span></div><span class="owner yuri">Yuri</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Aprobar modelo EDI</strong><br><span>Experiencia Guiada + Yuri o Workshop 100% Live.</span></div><span class="owner yuri">Yuri</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Confirmar decisiones del brief</strong><br><span>4 semanas, cohortes, compra directa, ruta post-EDI y participación de Yuri.</span></div><span class="owner yuri">Yuri</span></div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Pendiente de ejecución / seguimiento</h3>
+        <div class="list">
+          <div class="item"><div class="item-row"><div><strong>Banner de YouTube</strong><br><span>Pedir fecha a Marissa para cambio y confirmar publicación.</span></div><span class="owner marissa">Marissa</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Validar Stories del video</strong><br><span>Confirmar si Yuri aplicó la secuencia propuesta.</span></div><span class="owner yuri">Yuri</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Validar promoción orgánica</strong><br><span>Revisar si se usaron clips/Reels, recirculación y qué respuesta generaron.</span></div><span class="owner ct">Seguimiento</span></div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Pendiente Control Tower</h3>
+        <div class="list">
+          <div class="item"><div class="item-row"><div><strong>Cerrar arquitectura funcional del Diagnóstico</strong><br><span>Es el único pendiente real para cerrar Semana 1 al 100%: propósito, preguntas, scoring/calificación, resultado, CTA y routing.</span></div><span class="owner ct">Carel</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Convertir modelo EDI aprobado en backlog técnico</strong><br><span>Pages, Forms, Checkout, Thank You, tags, segmentos, emails y follow-up.</span></div><span class="owner ct">Carel</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Handoff final a Kajabi Architect</strong><br><span>Después de aprobación del delivery para evitar construir dos veces.</span></div><span class="owner ct">Carel</span></div></div>
+          <div class="item"><div class="item-row"><div><strong>Auditoría audiovisual EDI</strong><br><span>Necesaria si se aprueba Experiencia Guiada + Yuri.</span></div><span class="owner ct">Material</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div>
+        <strong>Ruta crítica inmediata</strong>
+        <p>El siguiente salto fuerte depende de dos decisiones: modelo EDI aprobado por Yuri y cierre del Funnel Diagnóstico.</p>
+      </div>
+      <div class="tag">RUTA CRÍTICA</div>
+    </div>
+
+    <div class="path">
+      <span class="node hot">Yuri aprueba modelo EDI</span>
+      <span class="arrow">→</span>
+      <span class="node">Backlog técnico</span>
+      <span class="arrow">→</span>
+      <span class="node">Kajabi build</span>
+      <span class="arrow">→</span>
+      <span class="node">Landing + Checkout + Emails</span>
+      <span class="arrow">→</span>
+      <span class="node">QA</span>
+      <span class="arrow">→</span>
+      <span class="node">Activación comercial EDI</span>
+    </div>
+  </section>
+
+  <section id="log" style="background:#fff">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Bitácora de cierres</div>
+        <h2>Historial operativo</h2>
+      </div>
+      <p>Aquí se agregará cada cierre de jornada para poder ver qué cambió, qué se decidió y qué se arrastra.</p>
+    </div>
+
+    <div class="panel">
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="kicker">Próximo corte</div>
+        <h2>Qué debería cambiar después</h2>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="panel">
+        <h3>1 · Decisiones</h3>
+        <p>Registrar modelo EDI aprobado y si quedan confirmadas las decisiones comerciales del brief.</p>
+      </div>
+      <div class="panel">
+        <h3>2 · Diagnóstico</h3>
+        <p>Cerrar el mapa funcional del Funnel Diagnóstico para llevar Semana 1 a 100%.</p>
+      </div>
+      <div class="panel">
+        <h3>3 · Ejecución real</h3>
+        <p>Registrar desempeño inicial de campañas y confirmar ejecución de banner, Stories y promoción orgánica de YouTube.</p>
+      </div>
+    </div>
+
+    <div class="small-note">Nota de gobierno: los porcentajes son estimaciones operativas para dirección del proyecto. Se actualizan cuando cambia el estado real de entregables y activos, no por el simple paso de los días.</div>
+  </section>
+
+  <div class="footer">
+    <span>YR · Mes 3 · Control Operativo</span>
+    <span>Última actualización: 11 Sep 2026 · Corte 01</span>
+  </div>
+</div>
+
+<script>
+const PROJECT_DATA = {
+  phases: [
+    {
+      label:"Pre-arranque",
+      title:"Cierre + baseline",
+      desc:"Cierre del periodo anterior completado. Único pendiente: Historias Destacadas por parte de Yuri.",
+      progress:95,
+      weight:8,
+      status:"En cierre",
+      statusType:"progress"
+    },
+    {
+      label:"Semana 1",
+      title:"Arquitectura + Kajabi",
+      desc:"Kajabi y Target Architecture completados. Único pendiente para cerrar la semana al 100%: arquitectura funcional del Funnel Diagnóstico.",
+      progress:95,
+      weight:20,
+      status:"Casi cerrada",
+      statusType:"done"
+    },
+    {
+      label:"Semana 2",
+      title:"Construcción base",
+      desc:"EDI, customer journeys y estrategia de YouTube ya definidos. Falta decisión de Yuri para bajar build técnico específico; continúa construcción del Diagnóstico.",
+      progress:65,
+      weight:28,
+      status:"En cierre",
+      statusType:"progress"
+    },
+    {
+      label:"Semana 3",
+      title:"Activación comercial",
+      desc:"Ya adelantada: dos campañas de posicionamiento están activas. Falta activación comercial específica de EDI y/o Diagnóstico cuando estén aprobados y construidos.",
+      progress:30,
+      weight:20,
+      status:"Adelantada",
+      statusType:"progress"
+    },
+    {
+      label:"Semana 4",
+      title:"Optimización + continuidad",
+      desc:"Lectura inicial de resultados, mejora de mensajes, públicos, formularios, automatizaciones, secuencias, consumo y fricción.",
+      progress:0,
+      weight:14,
+      status:"Pendiente",
+      statusType:"future"
+    },
+    {
+      label:"Semana 5",
+      title:"Consolidación + cierre",
+      desc:"Escalar lo que funciona, pausar pérdidas, documentar aprendizajes, revisar funnel real y dejar decisiones para Mes 4.",
+      progress:0,
+      weight:10,
+      status:"Pendiente",
+      statusType:"future"
+    }
+  ],
+  log: [
+    {
+      date:"11 Sep 2026",
+      title:"Corte 01 · Cierre de Semana 2",
+      text:"Dos campañas de posicionamiento ya activas. Evaluación + checklist de YouTube entregados. Dos modelos EDI y customer journeys completos listos para decisión de Yuri."
+    },
+    {
+      date:"10 Sep 2026",
+      title:"Transcript completo EDI disponible",
+      text:"El transcript desbloqueó la auditoría real de producto/experiencia y permitió separar metodología, ejercicios, rol de Yuri y funciones delegables."
+    },
+    {
+      date:"Previo",
+      title:"Kajabi Architecture V1",
+      text:"Auditoría base de Kajabi cerrada y arquitectura futura aprobada: Foundation → adquisición → EDI → Diagnóstico → lifecycle → NMF."
+    }
+  ]
+};
+
+function pct(n){ return Math.round(n) + "%"; }
+
+function render(){
+  const totalWeight = PROJECT_DATA.phases.reduce((a,p)=>a+p.weight,0);
+  const overall = PROJECT_DATA.phases.reduce((a,p)=>a+(p.progress*p.weight),0)/totalWeight;
+  document.getElementById("overallPct").textContent = pct(overall);
+  document.getElementById("overallBar").style.width = overall + "%";
+
+  document.getElementById("phaseList").innerHTML = PROJECT_DATA.phases.map(p=>`
+    <article class="phase">
+      <div class="phase-name">${p.label}</div>
+      <div>
+        <div class="phase-title">${p.title}</div>
+        <div class="phase-desc">${p.desc}</div>
+      </div>
+      <div class="phase-right">
+        <span class="badge ${p.statusType}"><span class="status-dot"></span>${p.status}</span>
+        <div class="phase-pct">${p.progress}%</div>
+        <div class="progress-shell light"><div class="progress-bar navy" style="width:${p.progress}%"></div></div>
+      </div>
+    </article>
+  `).join("");
+
+  document.getElementById("timeline").innerHTML = PROJECT_DATA.log.map(x=>`
+    <div class="log">
+      <div class="log-date">${x.date}</div>
+      <div class="log-line"></div>
+      <div class="log-card">
+        <strong>${x.title}</strong>
+        <p>${x.text}</p>
+      </div>
+    </div>
+  `).join("");
+
+  const summary = `YR · MES 3 · CIERRE OPERATIVO 11 SEP 2026
+
+AVANCE TOTAL ESTIMADO: ${pct(overall)}
+MOMENTO: Cierre Semana 2
+
+ACTIVOS:
+- 2 campañas de posicionamiento activas.
+- Kajabi Target Architecture V1 aprobada.
+- EDI con dos modelos completos y Decision Brief listo.
+- Evaluación + checklist YouTube entregados.
+
+SEMANA 1:
+95% — Kajabi completo. Solo falta cerrar arquitectura funcional del Funnel Diagnóstico.
+
+SEMANA 2:
+65% — EDI, customer journeys y YouTube avanzados. Falta decisión Yuri + build técnico específico.
+
+PENDIENTES CLAVE:
+- Yuri: Historias Destacadas.
+- Yuri: aprobar modelo EDI y decisiones del brief.
+- Marissa: fecha / cambio de banner YouTube.
+- Seguimiento: validar Stories y promoción orgánica del video.
+- Control Tower: cerrar Funnel Diagnóstico.
+- Después de aprobación EDI: backlog técnico + Kajabi build + landing + checkout + emails + QA.
+
+NOTA:
+El transcript completo del evento llegó el 10 Sep y desbloqueó el cierre de arquitectura EDI durante el 11 Sep.`;
+
+  document.getElementById("copySummary").addEventListener("click", async function(){
+    try{
+      await navigator.clipboard.writeText(summary);
+      const old=this.textContent;
+      this.textContent="Resumen copiado";
+      setTimeout(()=>this.textContent=old,1400);
+    }catch(e){
+      alert(summary);
+    }
+  });
+}
+render();
+</script>
+</body>
+</html>
