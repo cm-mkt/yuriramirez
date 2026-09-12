@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YR · EDI Delivery Decision Brief V4 · Async Ready</title>
+<style>
+:root{
+  --navy:#193653;
+  --navy2:#284d72;
+  --cream:#f5efe8;
+  --paper:#ffffff;
+  --ink:#183653;
+  --body:#59697a;
+  --peach:#e8bda5;
+  --peach2:#f2d7c9;
+  --gold:#c79a4d;
+  --line:#ddd3c9;
+  --soft:#faf7f3;
+  --shadow:0 18px 48px rgba(25,54,83,.11);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#e9e4de;color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  line-height:1.48;
+}
+button,input{font:inherit}
+.page{max-width:1500px;margin:0 auto;background:#fff;box-shadow:0 0 60px rgba(38,44,52,.10)}
+.topbar{
+  position:sticky;top:0;z-index:70;background:rgba(246,240,234,.94);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(25,54,83,.08)
+}
+.nav{max-width:1500px;margin:0 auto;padding:10px 7%;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.brand{font-size:11px;font-weight:900;letter-spacing:.19em;text-transform:uppercase;color:var(--navy)}
+.navsteps{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.navsteps a{
+  color:#677585;text-decoration:none;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid #ded5cc;border-radius:999px;padding:7px 10px;background:#fff
+}
+.navsteps a:hover{background:var(--navy);color:white;border-color:var(--navy)}
+.screen{min-height:92vh;padding:76px 7% 72px;position:relative;overflow:hidden}
+.screen.navy{
+  color:#fff;
+  background:
+    radial-gradient(circle at 92% 104%,rgba(255,255,255,.034) 0 29%,transparent 29.3%),
+    radial-gradient(circle at 92% 104%,transparent 0 37%,rgba(255,255,255,.03) 37.2% 44%,transparent 44.2%),
+    linear-gradient(120deg,#17314d,#223f60);
+}
+.screen.navy:after{
+  content:"";position:absolute;right:-130px;bottom:-330px;width:680px;height:680px;
+  border:1px solid rgba(232,189,165,.32);border-radius:50%;pointer-events:none
+}
+.screen.cream{background:var(--cream)}
+.screen.white{background:#fff}
+.kicker{font-size:12px;font-weight:900;letter-spacing:.19em;text-transform:uppercase;color:#d7a78e;margin-bottom:16px}
+.eyebrow{
+  font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#fff;
+  display:flex;align-items:center;gap:12px;margin-bottom:42px
+}
+.eyebrow:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold)}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;margin:0;font-weight:500;letter-spacing:-.025em}
+h1{font-size:clamp(52px,5.8vw,92px);line-height:.99}
+h2{font-size:clamp(40px,4.6vw,70px);line-height:1.02}
+h3{font-size:29px;line-height:1.1}
+.serif-italic{font-family:Georgia,"Times New Roman",serif;font-style:italic}
+.lead{font-size:clamp(19px,1.65vw,27px);line-height:1.52;color:var(--body);max-width:980px}
+.navy .lead{color:#dce4ec}
+.sub{font-size:16px;color:var(--body)}
+.micro{font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:900;color:#84909b}
+.navy .micro{color:#cfd7df}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.pill{border:1px solid currentColor;border-radius:999px;padding:8px 14px;font-size:12px;opacity:.82}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:end;min-height:64vh}
+.hero-note{
+  background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;padding:28px
+}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.option{
+  border-radius:24px;padding:27px;min-height:250px;display:flex;flex-direction:column;justify-content:space-between
+}
+.option.c{background:#fff;color:var(--navy);border:1px solid #eadfd5}
+.option.e{background:var(--navy2);color:#fff}
+.option .ref{font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:900;color:#9a8877}
+.option.e .ref{color:#d8b39e}
+.option .visible-name{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.option.e .visible-name{color:var(--peach)}
+.option h3{font-size:35px}
+.option p{font-size:15px;margin:15px 0 0;color:var(--body)}
+.option.e p{color:#e2e8ee}
+
+.context-callout{
+  margin-top:20px;
+  background:#f8f3ee;
+  border:1px solid #e6d9cf;
+  border-left:4px solid var(--peach);
+  border-radius:18px;
+  padding:16px 18px;
+  color:var(--body);
+  max-width:980px;
+}
+.context-callout.dark{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.14);
+  border-left-color:var(--peach);
+  color:#dce4ec;
+}
+.context-callout .callout-title{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#a26f56;
+  margin-bottom:6px;
+}
+.context-callout.dark .callout-title{color:var(--peach)}
+.context-callout p{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+  color:inherit;
+}
+
+.big-message{
+  margin-top:34px;border-left:4px solid var(--peach);padding:3px 0 3px 22px;
+  font-family:Georgia,serif;font-size:clamp(24px,2.4vw,39px);line-height:1.18
+}
+.footer-line{
+  position:absolute;left:7%;right:7%;bottom:24px;display:flex;justify-content:space-between;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.58
+}
+
+/* Master journey */
+.flow-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:28px}
+.flow-head .lead{max-width:750px;margin:0}
+.legend{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.role{
+  display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:6px 9px;font-size:9px;
+  letter-spacing:.12em;font-weight:900;text-transform:uppercase;border:1px solid transparent
+}
+.role:before{content:"";width:7px;height:7px;border-radius:50%}
+.role.client{background:#f2e7df;color:#84543c}.role.client:before{background:#c97b54}
+.role.yuri{background:#e4edf3;color:#254d6b}.role.yuri:before{background:#274e6e}
+.role.team{background:#f4eddc;color:#735c28}.role.team:before{background:#b58b37}
+.role.system{background:#eef0ef;color:#56635d}.role.system:before{background:#708078}
+
+.master-wrap{
+  margin-top:28px;border:1px solid #e1d7ce;border-radius:30px;background:#fff;box-shadow:var(--shadow);padding:20px
+}
+.zone-labels{display:grid;gap:10px;margin-bottom:9px}
+.zone-labels.guided-zones{grid-template-columns:3fr 2fr 3fr}
+.zone-labels.live-zones{grid-template-columns:3fr 1fr 3fr}
+.zone-label{
+  text-align:center;border-radius:999px;padding:7px 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:900
+}
+.zone-label.before{background:#f3eee9;color:#8b7564}
+.zone-label.edi{background:var(--navy);color:#fff}
+.zone-label.after{background:#e8eef3;color:#365675}
+.master-flow{
+  display:grid;gap:7px;align-items:stretch;
+  grid-template-columns:repeat(8,minmax(0,1fr))
+}
+.master-flow.e-flow{grid-template-columns:repeat(7,minmax(0,1fr))}
+.master-step{
+  border-radius:17px;border:1px solid #e3dbd3;background:#fbf8f4;min-height:94px;
+  padding:13px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative
+}
+.master-step strong{font-size:13px;line-height:1.2}
+.master-step small{display:block;font-size:10px;color:#7b8793;line-height:1.25;margin-top:6px}
+.master-step.focus{
+  background:var(--navy);color:#fff;border-color:var(--navy);transform:scale(1.025)
+}
+.master-step.focus small{color:#dbe4ec}
+.master-step.yuri-focus{
+  background:#d9b29d;color:#183653;border-color:#d9b29d;transform:scale(1.045);
+  box-shadow:0 10px 25px rgba(153,105,79,.18)
+}
+.master-step:after{
+  content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:#b7aaa0;font-size:14px;z-index:4
+}
+.master-step:last-child:after{display:none}
+.master-caption{
+  margin:15px auto 0;text-align:center;font-size:12px;color:#768391;font-weight:700
+}
+.flow-shell{margin-top:14px}
+.detail-tabs{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.detail-tabs button{
+  border:1px solid #e0d7ce;background:#fff;color:#526172;border-radius:999px;padding:8px 12px;
+  font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;cursor:pointer
+}
+.detail-tabs button.active,.detail-tabs button:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.detail-drawer{
+  margin-top:12px;border-radius:22px;background:var(--soft);padding:0;max-height:0;overflow:hidden;
+  transition:max-height .38s ease,padding .38s ease
+}
+.detail-drawer.open{padding:20px;max-height:1800px}
+.detail-title{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px}
+.detail-title h3{font-size:24px}
+.detail-close{border:0;background:transparent;color:#87929d;cursor:pointer;font-size:24px}
+.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.step{
+  background:#fff;border:1px solid #e3dbd3;border-radius:16px;padding:14px;min-height:106px;
+  display:flex;flex-direction:column;gap:9px
+}
+.step strong{font-size:13px;line-height:1.25}
+.step p{font-size:11px;color:#687686;margin:0;line-height:1.4}
+.sequence{
+  display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin:9px 0 2px
+}
+.seq{
+  padding:9px 12px;border-radius:13px;border:1px solid #e1d8d0;background:#fff;
+  font-weight:900;font-size:11px;color:#314d68
+}
+.seq.yuri{background:var(--navy);color:#fff;border-color:var(--navy)}
+.seq.output{background:#f1dfd5;color:#7a4d38;border-color:#e5c8b8}
+.seq-arrow{color:#b3a69c;font-weight:900}
+
+/* compare */
+.compare{
+  width:100%;border-collapse:separate;border-spacing:0;border:1px solid #e2dad2;border-radius:24px;overflow:hidden;
+  margin-top:30px;background:#fff;box-shadow:var(--shadow)
+}
+.compare th,.compare td{padding:16px 18px;border-bottom:1px solid #ece6df;text-align:left;vertical-align:top}
+.compare th{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#7b8793;background:#fbf8f4}
+.compare th:nth-child(2){color:#315474}.compare th:nth-child(3){color:#925d45}
+.compare td:first-child{font-weight:800;color:#2f4053;width:26%}
+.compare td{font-size:13px;color:#566475}
+.compare tr:last-child td{border-bottom:0}
+
+/* same */
+.same-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:46px;align-items:center;margin-top:42px}
+.same-core{
+  aspect-ratio:1/1;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:54px;position:relative;box-shadow:0 24px 60px rgba(24,49,77,.18)
+}
+.same-core:before,.same-core:after{content:"";position:absolute;border:1px solid rgba(199,154,77,.5);border-radius:50%}
+.same-core:before{inset:-20px}.same-core:after{inset:-40px}
+.same-core h3{font-size:34px}.same-core span{display:block;color:var(--peach);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;margin-top:12px}
+.same-items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.same-item{border:1px solid #dfd7cf;border-radius:17px;padding:16px;background:#fff}
+.same-item strong{display:block;font-size:14px;margin-bottom:5px}
+.same-item span{font-size:12px;color:#657283}
+
+/* decisions */
+.decision-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;margin-top:36px}
+.model-choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.model-choice label{
+  display:block;border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:18px;cursor:pointer;background:rgba(255,255,255,.05)
+}
+.model-choice input{display:none}
+.model-choice label:has(input:checked){background:#fff;color:var(--navy);border-color:#fff}
+.model-choice strong{font-family:Georgia,serif;font-size:23px;display:block}
+.model-choice span{font-size:11px;opacity:.78}
+.q-list{display:grid;gap:9px}
+.q{
+  background:#fff;color:var(--navy);border-radius:16px;padding:14px 15px;display:flex;align-items:flex-start;gap:11px;
+  cursor:pointer;border:1px solid rgba(255,255,255,.2)
+}
+.q input{margin-top:4px;accent-color:var(--navy)}
+.q b{font-size:13px;line-height:1.35}
+.conditional-q{display:none}
+.conditional-q.show{display:flex}
+.route-box{
+  margin-top:10px;border:1px solid rgba(255,255,255,.16);border-radius:17px;padding:15px;background:rgba(255,255,255,.05);
+  color:#e7edf3;font-size:12px
+}
+.route-flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px}
+.route-node{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);font-weight:900}
+.decision-box{
+  margin-top:14px;border-radius:17px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  padding:17px;font-size:12px;color:#e4ebf2;min-height:82px;white-space:pre-line
+}
+.btn{margin-top:10px;border:0;background:var(--peach);color:var(--navy);font-weight:900;border-radius:999px;padding:11px 17px;cursor:pointer}
+
+@media(max-width:1000px){
+  .navsteps{display:none}
+  .screen{padding:58px 6% 64px;min-height:auto}
+  .hero-grid,.option-grid,.same-grid,.decision-layout{grid-template-columns:1fr}
+  .master-flow,.master-flow.e-flow{grid-template-columns:repeat(4,1fr)}
+  .master-step:nth-child(4n):after{display:none}
+  .zone-labels{display:none}
+  .step-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  h1{font-size:46px}h2{font-size:38px}
+  .master-flow,.master-flow.e-flow,.step-grid,.same-items,.model-choice{grid-template-columns:1fr}
+  .master-step:after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%)}
+  .screen{padding-left:20px;padding-right:20px}
+  .flow-head{display:block}.legend{justify-content:flex-start;margin-top:15px}
+  .compare{display:block;overflow-x:auto}
+}
+@media print{
+  .topbar{display:none}
+  .screen{min-height:auto;page-break-after:always;padding:42px}
+  .detail-drawer{max-height:none!important;padding:16px!important;display:block!important}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="nav">
+    <div class="brand">Yuri Ramírez · EDI · Decision Brief V4</div>
+    <div class="navsteps">
+      <a href="#decision">01 Decisión</a>
+      <a href="#guided">02 Opción 1</a>
+      <a href="#live">03 Opción 2</a>
+      <a href="#difference">04 Diferencia</a>
+      <a href="#same">05 Se mantiene</a>
+      <a href="#approve">06 Aprobar</a>
+    </div>
+  </div>
+</div>
+
+<main class="page">
+
+<section class="screen navy" id="decision">
+  <div class="eyebrow">Yuri Ramírez · Continuidad Mes 3</div>
+  <div class="hero-grid">
+    <div>
+      <div class="kicker">EDI · Decisión de delivery</div>
+      <h1>EDI ya tiene una metodología y una experiencia en vivo ejecutada.</h1>
+      <h2 class="serif-italic" style="color:var(--peach);margin-top:22px">Ahora necesitamos decidir cómo queremos entregarlo hacia adelante.</h2>
+      <p class="lead" style="margin-top:26px">La metodología, los ejercicios y el resultado que buscamos conservar no cambian. Lo que estamos decidiendo es dónde participa Yuri y cómo acompañamos la implementación.</p>
+      <div class="big-message" style="color:#fff">No estamos cambiando EDI.<br><em style="color:var(--peach)">Estamos decidiendo cómo se entrega.</em></div>
+    </div>
+    <div>
+      <div class="option-grid">
+        <article class="option c">
+          <div>
+            <div class="visible-name">Opción 1</div>
+            <h3>Experiencia guiada<br><em>+ Yuri</em></h3>
+            <p>El cliente trabaja antes. Llega con una decisión concreta y Yuri entra durante 60 min para corregir, confrontar y elevar criterio.</p>
+          </div>
+          
+        </article>
+        <article class="option e">
+          <div>
+            <div class="visible-name">Opción 2</div>
+            <h3>Workshop 100%<br><em>en vivo con Yuri</em></h3>
+            <p>Yuri entrega toda la experiencia central en vivo: enseña, facilita ejercicios, interpreta y corrige.</p>
+          </div>
+          
+        </article>
+      </div>
+      <div class="context-callout dark">
+        <div class="callout-title">Cómo leer esta propuesta</div>
+        <p>Las dos opciones conservan EDI, sus ejercicios y la implementación posterior. No estamos decidiendo cuál metodología usar, sino cómo quieres participar tú en la experiencia.<br><br>En la Opción 1, el cliente trabaja primero y llegas tú para elevar criterio y corregir decisiones. En la Opción 2, tú impartes toda la experiencia central en vivo.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-line"><span>YR · EDI Delivery Decision Brief V4</span><span>01 · Decisión</span></div>
+</section>
+
+<section class="screen cream" id="guided">
+  <div class="flow-head">
+    <div>
+      <div class="kicker">02 · Opción 1</div>
+      <h2>Experiencia guiada <span class="serif-italic">+ Yuri.</span></h2>
+      <p class="lead">El cliente trabaja primero sobre su negocio. Yuri entra después, cuando ya existe un caso, una decisión y algo concreto que corregir.</p>
+          </div>
+    <div class="legend"><span class="role client">Cliente</span><span class="role yuri">Yuri</span><span class="role team">Team</span><span class="role system">Sistema</span></div>
+  </div>
+
+  <div class="master-wrap">
+    <div class="zone-labels guided-zones">
+      <div class="zone-label before">Antes de EDI</div>
+      <div class="zone-label edi">Experiencia EDI</div>
+      <div class="zone-label after">Después de EDI</div>
+    </div>
+    <div class="master-flow">
+      <div class="master-step"><strong>Llegan</strong><small>Meta · IG · YouTube · Email</small></div>
+      <div class="master-step"><strong>Conocen EDI</strong><small>Landing</small></div>
+      <div class="master-step"><strong>Compran</strong><small>Checkout</small></div>
+      <div class="master-step focus"><strong>Se preparan</strong><small>Videos + Mapa + Costo + Borrador</small></div>
+      <div class="master-step yuri-focus"><strong>Yuri · 60 min</strong><small>Casos · criterio · corrección</small></div>
+      <div class="master-step focus"><strong>Implementan</strong><small>3 semanas</small></div>
+      <div class="master-step"><strong>Revisamos resultado</strong><small>Qué pasó realmente</small></div>
+      <div class="master-step"><strong>Siguiente paso</strong><small>Seguimiento o Diagnóstico</small></div>
+    </div>
+    <div class="master-caption">El cliente trabaja primero sobre su negocio, llega preparado a Yuri y después lleva la decisión a implementación.</div>
+  </div>
+
+  <div class="context-callout">
+    <div class="callout-title">¿Qué significa esta opción?</div>
+    <p>No significa quitarte del producto. Significa separar lo que puede enseñarse de forma consistente de lo que realmente necesita tu criterio.<br><br>El cliente llega contigo después de haber identificado sus fuegos, calculado el costo y construido una primera decisión. Tu hora se utiliza para corregir aplicación, confrontar patrones y mejorar decisiones reales.</p>
+  </div>
+
+  <div class="flow-shell">
+    <div class="detail-tabs">
+      <button class="active" data-stage="g-before">Antes de EDI</button>
+      <button data-stage="g-prep">Se prepara</button>
+      <button data-stage="g-team">El team prepara a Yuri</button>
+      <button data-stage="g-yuri">Yuri entra</button>
+      <button data-stage="g-after">Lo lleva al negocio</button>
+      <button data-stage="g-result">Resultado / siguiente paso</button>
+    </div>
+
+    <div class="detail-drawer open" id="g-before">
+      <div class="detail-title"><h3>1–4 · Llega, conoce EDI, compra y entra</h3><button class="detail-close">×</button></div>
+      <div class="step-grid">
+        <div class="step"><span class="role system">Sistema</span><strong>1 · Llegan</strong><p>Meta · Instagram · YouTube · Email.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>2 · Conocen EDI</strong><p>Mensaje: “Mi negocio creció, pero sigue dependiendo demasiado de mí.”</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>3 · Compran</strong><p>Checkout. Si dejó datos o inició checkout y no compró → seguimiento.</p></div>
+        <div class="step"><span class="role system">Sistema</span><strong>4 · Entran</strong><p>Acceso, workbook, fecha de sesión con Yuri e instrucciones.</p></div>
+        <div class="step"><span class="role system">Sistema</span><strong>Compra directa</strong><p>Contenido/Ads → Landing EDI → Checkout → Compra. WhatsApp queda para dudas, soporte o seguimiento; no es requisito para comprar.</p></div>
+        <div class="step"><span class="role yuri">Mensaje</span><strong>Qué debe entender al entrar</strong><p>“Antes de ver a Yuri vas a trabajar sobre tu negocio para llegar con una decisión concreta.”</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="g-prep">
+      <div class="detail-title"><h3>5 · El cliente se prepara</h3><button class="detail-close">×</button></div>
+      <div class="sequence">
+        <span class="seq yuri">VER · Video Yuri</span><span class="seq-arrow">→</span>
+        <span class="seq output">Mapa de Mis Fuegos</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">COSTO · Video Yuri</span><span class="seq-arrow">→</span>
+        <span class="seq output">Costo Real</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">SOLTAR / CONSTRUIR · Video Yuri</span><span class="seq-arrow">→</span>
+        <span class="seq output">Borrador de decisión</span>
+      </div>
+      <div class="step-grid" style="margin-top:14px">
+        <div class="step"><span class="role client">Cliente</span><strong>Mapa de Mis Fuegos</strong><p>¿Qué sigue dependiendo de mí?</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>Costo Real</strong><p>¿Cuánto me está costando en tiempo, dinero y oportunidad?</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>Borrador de decisión</strong><p>¿Qué voy a dejar de resolver? ¿Quién lo asumirá? ¿Cómo sabré que funcionó?</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="g-team">
+      <div class="detail-title"><h3>6 · El team prepara a Yuri</h3><button class="detail-close">×</button></div>
+      <div class="context-callout" style="margin-top:0;margin-bottom:14px">
+        <div class="callout-title">¿Por qué existe este paso?</div>
+        <p>Para que tus 60 minutos no se gasten revisando contexto o preguntas administrativas.<br><br>El team no sustituye tu criterio. Su función es llegar contigo con lo importante ya ordenado: qué patrones se repiten, qué decisiones necesitan corrección y qué casos pueden enseñar algo al grupo.</p>
+      </div>
+      <div class="step-grid">
+        <div class="step"><span class="role client">Cliente</span><strong>Entrega su caso</strong><p>Entrega su caso y una decisión por validar.</p></div>
+        <div class="step"><span class="role team">Team</span><strong>Revisa y agrupa patrones</strong><p>Detecta decisiones débiles y selecciona casos donde Yuri realmente agrega criterio.</p></div>
+        <div class="step"><span class="role yuri">Yuri</span><strong>Recibe un resumen corto</strong><p>Patrones + casos elegidos + preguntas transferibles.</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="g-yuri">
+      <div class="detail-title"><h3>7 · Yuri entra · Live 60 min</h3><button class="detail-close">×</button></div>
+      <div class="sequence">
+        <span class="seq yuri">Patrones</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Casos</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Criterio</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Correcciones</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Preguntas</span><span class="seq-arrow">→</span>
+        <span class="seq output">Decisión Final</span>
+      </div>
+      <div class="big-message" style="font-size:26px;margin-top:18px">Yuri no repite contenido que el cliente ya trabajó; <em>usa la sesión para elevar aplicación y corregir decisiones.</em></div>
+    </div>
+
+    <div class="detail-drawer" id="g-after">
+      <div class="detail-title"><h3>8 · Lo lleva al negocio</h3><button class="detail-close">×</button></div>
+      <div class="step-grid">
+        <div class="step"><span class="role client">Cliente</span><strong>Semana 2 · SOLTAR</strong><p>Transferir una responsabilidad real.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>Semana 3 · CONSTRUIR / DOCUMENTAR</strong><p>Dejar contexto, criterio o proceso suficiente.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>Semana 4 · MEDIR</strong><p>¿Realmente dejó de depender de mí?</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="g-result">
+      <div class="detail-title"><h3>9–10 · Revisamos qué pasó y definimos siguiente paso</h3><button class="detail-close">×</button></div>
+      <div class="step-grid">
+        <div class="step"><span class="role client">Cliente</span><strong>A · Lo logró y puede seguir</strong><p>Seguimiento. No forzar una venta.</p></div>
+        <div class="step"><span class="role team">Team</span><strong>B · Descubrió un problema más grande</strong><p>Diagnóstico para entender qué necesita realmente.</p></div>
+        <div class="step"><span class="role team">Team</span><strong>C · No lo logró</strong><p>Entender por qué: problema de experiencia vs limitación estructural.</p></div>
+        <div class="step"><span class="role team">Team</span><strong>Diagnóstico solo cuando existe necesidad</strong><p>No convertir EDI automáticamente en venta a NMF.</p></div>
+        <div class="step"><span class="role yuri">Ecosistema</span><strong>Posibles rutas</strong><p>NMF · Coaching · otra solución · seguimiento · no fit.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-message">Yuri sigue presente, pero dejamos de utilizar sus horas para repetir contenido. <em>El cliente llega con trabajo hecho y utilizamos a Yuri donde su criterio tiene mayor valor.</em></div>
+  <div class="footer-line"><span>YR · EDI Delivery Decision Brief V4</span><span>02 · Opción 1</span></div>
+</section>
+
+<section class="screen white" id="live">
+  <div class="flow-head">
+    <div>
+      <div class="kicker">03 · Opción 2</div>
+      <h2>Workshop 100% <span class="serif-italic">en vivo con Yuri.</span></h2>
+      <p class="lead">El inicio y el final son los mismos. Lo que cambia es la experiencia EDI: Yuri enseña y facilita todo el contenido central en vivo.</p>
+          </div>
+    <div class="legend"><span class="role client">Cliente</span><span class="role yuri">Yuri</span><span class="role team">Team</span><span class="role system">Sistema</span></div>
+  </div>
+
+  <div class="master-wrap">
+    <div class="zone-labels live-zones">
+      <div class="zone-label before">Antes de EDI</div>
+      <div class="zone-label edi">Experiencia EDI</div>
+      <div class="zone-label after">Después de EDI</div>
+    </div>
+    <div class="master-flow e-flow">
+      <div class="master-step"><strong>Llegan</strong><small>Meta · IG · YouTube · Email</small></div>
+      <div class="master-step"><strong>Conocen EDI</strong><small>Landing</small></div>
+      <div class="master-step"><strong>Compran</strong><small>Checkout</small></div>
+      <div class="master-step yuri-focus"><strong>Workshop Yuri</strong><small>≈2.5 h · toda la experiencia central</small></div>
+      <div class="master-step focus"><strong>Implementan</strong><small>3 semanas</small></div>
+      <div class="master-step"><strong>Revisamos resultado</strong><small>Qué pasó realmente</small></div>
+      <div class="master-step"><strong>Siguiente paso</strong><small>Seguimiento o Diagnóstico</small></div>
+    </div>
+    <div class="master-caption">El cliente vive toda la experiencia central con Yuri en vivo y después lleva esa decisión al negocio para implementarla.</div>
+  </div>
+
+  <div class="context-callout">
+    <div class="callout-title">¿Qué significa esta opción?</div>
+    <p>Conservamos la forma en que EDI ya fue impartido: tú enseñas, facilitas los ejercicios, interpretas los casos y corriges en tiempo real.<br><br>El cambio importante está después del workshop: EDI ya no termina al cerrar Zoom. El participante todavía tiene tres semanas para transferir, documentar y medir una responsabilidad.</p>
+  </div>
+
+  <div class="flow-shell">
+    <div class="detail-tabs">
+      <button class="active" data-stage="l-before">Antes de EDI</button>
+      <button data-stage="l-live">Workshop Live Yuri</button>
+      <button data-stage="l-after">Lo lleva al negocio</button>
+      <button data-stage="l-result">Resultado / siguiente paso</button>
+    </div>
+
+    <div class="detail-drawer open" id="l-before">
+      <div class="detail-title"><h3>1–4 · Llega, conoce EDI, compra y entra</h3><button class="detail-close">×</button></div>
+      <div class="step-grid">
+        <div class="step"><span class="role system">Sistema</span><strong>1 · Llegan</strong><p>Meta · Instagram · YouTube · Email.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>2 · Conocen EDI</strong><p>Misma landing y mismo problema comercial.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>3 · Compran</strong><p>Checkout. Si dejó datos o inició checkout y no compró → seguimiento.</p></div>
+        <div class="step"><span class="role system">Sistema</span><strong>4 · Entran</strong><p>Confirmación, workbook, fecha, calendario y recordatorios.</p></div>
+        <div class="step"><span class="role system">Sistema</span><strong>Compra directa</strong><p>Contenido/Ads → Landing EDI → Checkout → Compra. WhatsApp queda para dudas, soporte o seguimiento; no es requisito para comprar.</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="l-live">
+      <div class="detail-title"><h3>5 · Viven EDI con Yuri · ≈2.5 horas</h3><button class="detail-close">×</button></div>
+      <div class="sequence">
+        <span class="seq yuri">VER</span><span class="seq-arrow">→</span>
+        <span class="seq output">Mapa de Mis Fuegos</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">COSTO</span><span class="seq-arrow">→</span>
+        <span class="seq output">Costo Real</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">SOLTAR</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">CONSTRUIR</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Arquitectura</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Casos</span><span class="seq-arrow">→</span>
+        <span class="seq output">Decisión</span><span class="seq-arrow">→</span>
+        <span class="seq yuri">Q&A</span><span class="seq-arrow">→</span>
+        <span class="seq output">Decisión Final</span>
+      </div>
+      <div class="step-grid" style="margin-top:14px">
+        <div class="step"><span class="role yuri">Yuri</span><strong>Enseña</strong><p>Entrega todo el contenido central.</p></div>
+        <div class="step"><span class="role yuri">Yuri</span><strong>Facilita</strong><p>Guía los tres ejercicios.</p></div>
+        <div class="step"><span class="role yuri">Yuri</span><strong>Corrige y responde</strong><p>Interpreta casos y resuelve dudas en vivo.</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="l-after">
+      <div class="detail-title"><h3>6 · Lo lleva al negocio · mismo seguimiento que Opción 1</h3><button class="detail-close">×</button></div>
+      <div class="step-grid">
+        <div class="step"><span class="role client">Cliente</span><strong>Semana 2 · SOLTAR</strong><p>Ejecuta transferencia.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>Semana 3 · CONSTRUIR / DOCUMENTAR</strong><p>Deja contexto, criterio o proceso suficiente.</p></div>
+        <div class="step"><span class="role client">Cliente</span><strong>Semana 4 · MEDIR</strong><p>Valida si la responsabilidad dejó de depender de él.</p></div>
+      </div>
+    </div>
+
+    <div class="detail-drawer" id="l-result">
+      <div class="detail-title"><h3>7–8 · Revisamos resultado y definimos siguiente paso</h3><button class="detail-close">×</button></div>
+      <div class="step-grid">
+        <div class="step"><span class="role client">Cliente</span><strong>Puede seguir</strong><p>Seguimiento / mantenerse en el ecosistema.</p></div>
+        <div class="step"><span class="role team">Team</span><strong>Necesita ayuda más profunda</strong><p>Diagnóstico.</p></div>
+        <div class="step"><span class="role team">Team</span><strong>No implementó</strong><p>Entender por qué antes de tratarlo como oportunidad comercial.</p></div>
+        <div class="step"><span class="role yuri">Ecosistema</span><strong>Solo si existe necesidad</strong><p>NMF · Coaching · otra solución · seguimiento · no fit.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="big-message">Aquí conservamos la experiencia central en vivo con Yuri. <em>La mejora está en que EDI ya no termina cuando termina el Zoom: después acompañamos la implementación y vemos qué pasó realmente.</em></div>
+  <div class="footer-line"><span>YR · EDI Delivery Decision Brief V4</span><span>03 · Opción 2</span></div>
+</section>
+
+<section class="screen cream" id="difference">
+  <div class="kicker">04 · Diferencia real</div>
+  <h2>La diferencia no está en <span class="serif-italic">qué enseñamos.</span><br>Está en <span class="serif-italic">cómo lo vive el cliente.</span></h2>
+  <div class="context-callout">
+    <div class="callout-title">Importante</div>
+    <p>Esta tabla no busca demostrar que una opción es mejor que la otra.<br><br>La decisión es qué queremos priorizar en esta etapa: concentrar el tiempo de Yuri donde su criterio agrega más valor, o mantener a Yuri durante toda la experiencia central.</p>
+  </div>
+
+  <table class="compare">
+    <thead><tr><th></th><th>Experiencia guiada + Yuri</th><th>Workshop Live Yuri</th></tr></thead>
+    <tbody>
+      <tr><td>Cómo recibe el contenido</td><td>Antes de ver a Yuri</td><td>Durante el Live</td></tr>
+      <tr><td>Tiempo Live Yuri</td><td>60 min</td><td>≈2.5 h</td></tr>
+      <tr><td>Qué hace Yuri</td><td>Corrige, confronta y eleva criterio</td><td>Enseña, facilita, corrige y responde</td></tr>
+      <tr><td>Trabajo previo</td><td>Alto</td><td>Ligero</td></tr>
+      <tr><td>Presencia de Yuri</td><td>Concentrada</td><td>Durante toda la experiencia</td></tr>
+      <tr><td>Implementación posterior</td><td>3 semanas</td><td>3 semanas</td></tr>
+      <tr><td>Dependencia de agenda Yuri</td><td>Menor</td><td>Mayor</td></tr>
+      <tr><td>Facilidad para repetir</td><td>Mayor</td><td>Depende más de fechas de Yuri</td></tr>
+      <tr><td>Preparación operativa</td><td>Mayor al inicio</td><td>Más simple al inicio</td></tr>
+      <tr><td>Qué prioriza</td><td>Concentrar el tiempo de Yuri donde su criterio aporta más</td><td>Mantener a Yuri durante toda la experiencia central</td></tr>
+<tr><td>Principal trade-off</td><td>Requiere mayor preparación previa del cliente y del sistema</td><td>Requiere mayor disponibilidad de agenda de Yuri</td></tr>
+    </tbody>
+  </table>
+  <div class="footer-line"><span>YR · EDI Delivery Decision Brief V4</span><span>04 · Diferencia real</span></div>
+</section>
+
+<section class="screen white" id="same">
+  <div class="kicker">05 · Lo que se mantiene igual</div>
+  <h2>No estamos cambiando EDI.<br><span class="serif-italic">Estamos decidiendo cómo se entrega.</span></h2>
+  <div class="same-grid">
+    <div class="same-core">
+      <div><h3>VER<br>↓<br>SOLTAR<br>↓<br>CONSTRUIR</h3><span>Misma metodología</span></div>
+    </div>
+    <div>
+      <div class="same-items">
+        <div class="same-item"><strong>Misma problemática</strong><span>El negocio creció, pero sigue dependiendo del dueño.</span></div>
+        <div class="same-item"><strong>Mismo outcome</strong><span>Identificar dependencia, costo y primer movimiento.</span></div>
+        <div class="same-item"><strong>Mapa de Mis Fuegos</strong><span>¿Qué sigue dependiendo de mí?</span></div>
+        <div class="same-item"><strong>Costo Real</strong><span>¿Cuánto me está costando?</span></div>
+        <div class="same-item"><strong>Decisión de la Semana</strong><span>Una transferencia concreta con evidencia.</span></div>
+        <div class="same-item"><strong>Implementación</strong><span>Soltar → Construir/Documentar → Medir.</span></div>
+        <div class="same-item"><strong>Mismo ecosistema comercial</strong><span>Landing, checkout y seguimiento.</span></div>
+        <div class="same-item"><strong>Diagnóstico posterior</strong><span>Solo cuando aparece una necesidad real.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-line"><span>YR · EDI Delivery Decision Brief V4</span><span>05 · Se mantiene</span></div>
+</section>
+
+<section class="screen navy" id="approve">
+  <div class="kicker">06 · Cierre de reunión</div>
+  <h2>Hoy necesitamos salir con <span class="serif-italic" style="color:var(--peach)">6 decisiones.</span></h2>
+  <p class="lead" style="margin-top:16px">Nada más. Lo técnico queda detrás. Aquí definimos qué experiencia desarrollamos primero y confirmamos los principios comerciales y de implementación.</p>
+
+  <div class="context-callout dark">
+    <p>Lo que necesitamos de ti no es aprobar toda la operación técnica. Solo confirmar qué experiencia quieres desarrollar primero y los principios comerciales que aparecen abajo.</p>
+  </div>
+
+  <div class="decision-layout">
+    <div>
+      <div class="micro" style="color:var(--peach);margin-bottom:11px">1 · Qué desarrollamos primero</div>
+      <div class="model-choice">
+        <label><input type="radio" name="model" value="Experiencia Guiada + Yuri"><strong>Experiencia Guiada + Yuri</strong></label>
+        <label><input type="radio" name="model" value="Workshop 100% Live Yuri"><strong>Workshop 100% Live Yuri</strong></label>
+      </div>
+
+      <div class="route-box">
+        <strong>4 · Ruta comercial que queremos confirmar</strong>
+        <div class="route-flow">
+          <span class="route-node">EDI</span><span>→</span>
+          <span class="route-node">Implementación</span><span>→</span>
+          <span>si necesita más ayuda</span><span>→</span>
+          <span class="route-node">Diagnóstico</span><span>→</span>
+          <span class="route-node">Solución adecuada</span>
+        </div>
+        <div style="margin-top:8px;color:var(--peach);font-weight:900">No: EDI → NMF automático.</div>
+      </div>
+
+      <div class="decision-box" id="decisionSummary">Selecciona una opción y marca los acuerdos para generar un resumen.</div>
+      <button class="btn" id="copyDecision">Copiar resumen</button>
+    </div>
+
+    <div class="q-list">
+      <label class="q"><input type="checkbox" data-q="Confirmamos una experiencia total de 4 semanas: semana inicial + 3 semanas de implementación."><b>2. ¿Confirmamos una experiencia total de 4 semanas?</b></label>
+      <label class="q"><input type="checkbox" data-q="Empezamos inicialmente con cohortes/fechas definidas."><b>3. ¿Empezamos con fechas/cohortes definidas? <span style="color:#9b654c">Recomendación Control Tower: sí, inicialmente.</span></b></label>
+      <label class="q"><input type="checkbox" data-q="Confirmamos la ruta EDI → implementación → diagnóstico solo si existe necesidad → solución adecuada."><b>4. ¿Confirmamos EDI → implementación → diagnóstico por necesidad, no NMF automático?</b></label>
+      <label class="q conditional-q" id="qC"><input type="checkbox" data-q="Si elegimos Experiencia Guiada + Yuri: Yuri aprueba un Live de aproximadamente 60 minutos centrado en casos, criterio y corrección."><b>5. Si elegimos Experiencia Guiada: ¿Yuri aprueba un Live de ≈60 min centrado en casos, criterio y corrección?</b></label>
+      <label class="q conditional-q" id="qE"><input type="checkbox" data-q="Si elegimos Workshop Live: Yuri aprueba continuar con un workshop Live de aproximadamente 2.5 horas."><b>5. Si elegimos Workshop Live: ¿Yuri aprueba continuar con un workshop Live de ≈2.5 h?</b></label>
+      <label class="q"><input type="checkbox" data-q="Confirmamos compra directa: Contenido/Ads → Landing EDI → Checkout → Compra. WhatsApp queda para dudas, soporte o seguimiento; no es requisito para comprar."><b>6. ¿Confirmamos compra directa: Contenido/Ads → Landing EDI → Checkout → Compra?<br><span style="font-weight:600;color:#617286">WhatsApp funciona como dudas, soporte o seguimiento; no es requisito para comprar.</span></b></label>
+    </div>
+  </div>
+  <div class="footer-line"><span>Preparado para decisión · Yuri Ramírez</span><span>06 · Aprobar</span></div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  document.querySelectorAll('.flow-shell').forEach(shell=>{
+    const tabs=[...shell.querySelectorAll('.detail-tabs button')];
+    const drawers=[...shell.querySelectorAll('.detail-drawer')];
+    function open(id){
+      tabs.forEach(t=>t.classList.toggle('active',t.dataset.stage===id));
+      drawers.forEach(d=>d.classList.toggle('open',d.id===id));
+    }
+    tabs.forEach(t=>t.addEventListener('click',()=>open(t.dataset.stage)));
+    drawers.forEach(d=>{
+      const x=d.querySelector('.detail-close');
+      if(x) x.addEventListener('click',()=>{
+        d.classList.remove('open');
+        tabs.forEach(t=>t.classList.remove('active'));
+      });
+    });
+  });
+
+  const radios=[...document.querySelectorAll('input[name="model"]')];
+  const checks=[...document.querySelectorAll('.q input[type="checkbox"]')];
+  const box=document.getElementById('decisionSummary');
+  const qC=document.getElementById('qC');
+  const qE=document.getElementById('qE');
+
+  function updateConditional(){
+    const selected=radios.find(r=>r.checked)?.value || "";
+    qC.classList.toggle('show',selected==="Experiencia Guiada + Yuri");
+    qE.classList.toggle('show',selected==="Workshop 100% Live Yuri");
+    if(selected!=="Experiencia Guiada + Yuri") qC.querySelector('input').checked=false;
+    if(selected!=="Workshop 100% Live Yuri") qE.querySelector('input').checked=false;
+  }
+  function update(){
+    updateConditional();
+    const selected=radios.find(r=>r.checked);
+    const visibleChecks=checks.filter(c=>c.closest('.conditional-q')===null || c.closest('.conditional-q').classList.contains('show'));
+    const approved=visibleChecks.filter(c=>c.checked).map(c=>"✓ "+c.dataset.q);
+    const pending=visibleChecks.filter(c=>!c.checked).length;
+    let out=selected ? "PRIMERA VERSIÓN: "+selected.value : "PRIMERA VERSIÓN: pendiente";
+    if(approved.length) out+="\n\nACUERDOS:\n"+approved.join("\n");
+    if(pending) out+="\n\nPENDIENTES: "+pending+" decisión(es)";
+    box.textContent=out;
+  }
+  radios.forEach(r=>r.addEventListener('change',update));
+  checks.forEach(c=>c.addEventListener('change',update));
+  document.getElementById('copyDecision').addEventListener('click',async function(){
+    update();
+    try{
+      await navigator.clipboard.writeText(box.textContent);
+      this.textContent="Copiado";
+      setTimeout(()=>this.textContent="Copiar resumen",1300);
+    }catch(e){
+      this.textContent="Copia manualmente";
+      setTimeout(()=>this.textContent="Copiar resumen",1600);
+    }
+  });
+  update();
+})();
+</script>
+</body>
+</html>
