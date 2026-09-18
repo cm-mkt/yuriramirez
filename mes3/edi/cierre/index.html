@@ -1,492 +1,197 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YR · EDI LIVE · Commercial Closure Decision Sheet</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YR · EDI LIVE · Commercial & Campaign Playbook V1</title>
 <style>
-:root{
-  --navy:#16233A;
-  --navy2:#22324A;
-  --cream:#F2E9D8;
-  --paper:#fffdfa;
-  --gold:#C6A15B;
-  --brick:#9E3B2E;
-  --ink:#16233A;
-  --body:#5f6d7a;
-  --line:#dfd6cd;
-  --soft:#f8f4ee;
-  --green:#4e6f62;
-  --shadow:0 18px 44px rgba(22,35,58,.10);
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:#e9e4de;
-  color:var(--ink);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  line-height:1.5;
-}
-.shell{max-width:1450px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 70px rgba(22,35,58,.10)}
-.hero{
-  padding:72px 7% 58px;
-  color:#fff;
-  background:linear-gradient(120deg,var(--navy),var(--navy2));
-  position:relative;overflow:hidden;
-}
-.hero:after{
-  content:"";position:absolute;width:620px;height:620px;border-radius:50%;
-  border:1px solid rgba(198,161,91,.22);right:-180px;bottom:-330px;
-}
-.kicker{font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin:0;letter-spacing:-.02em}
-h1{font-size:clamp(48px,5.4vw,86px);line-height:1.0;max-width:1100px;margin-top:12px}
-.hero p{max-width:980px;font-size:clamp(17px,1.45vw,23px);color:#dfe7ee;margin-top:20px}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
-.badge{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 11px;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-.section{padding:62px 7%}
-.section:nth-child(even){background:var(--cream)}
-.section-no{font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-h2{font-size:clamp(36px,4vw,62px);line-height:1.04}
-.lead{font-size:clamp(17px,1.4vw,23px);color:var(--body);max-width:980px;margin:12px 0 0}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:24px}
-.c12{grid-column:span 12}.c8{grid-column:span 8}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}.c3{grid-column:span 3}
-.card{
-  background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)
-}
-.card h3{font-size:28px}
-.card h4{font-size:21px}
-.card p{color:var(--body);margin:8px 0}
-.rule{margin-top:18px;padding:15px 17px;border-radius:15px;background:#faf6f1;border:1px solid #e8ddd3;border-left:4px solid var(--gold);color:var(--body)}
-.rule strong{color:var(--navy)}
-.rule.red{border-left-color:var(--brick);background:#fff8f6}
-.rule.green{border-left-color:var(--green);background:#f7faf8}
-.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:24px}
-.node{background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 13px;font-size:12px;color:#556474;font-weight:700}
-.arrow{font-weight:900;color:#a99d91}
-.option{
-  position:relative;background:#fff;border:2px solid #e5ddd5;border-radius:24px;padding:22px;cursor:pointer;
-  transition:.18s ease;min-height:100%;
-}
-.option:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.option input{position:absolute;top:18px;right:18px;transform:scale(1.3)}
-.option.selected{border-color:var(--gold);box-shadow:0 0 0 4px rgba(198,161,91,.10),var(--shadow)}
-.option.recommended:before{
-  content:"RECOMENDACIÓN";position:absolute;left:18px;top:-11px;background:var(--gold);color:#fff;
-  font-size:9px;font-weight:900;letter-spacing:.12em;border-radius:999px;padding:6px 9px
-}
-.price{font-family:Georgia,"Times New Roman",serif;font-size:44px;line-height:1;color:var(--navy);margin:12px 0}
-.meta{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-.small{font-size:12px;color:#71808d}
-ul{padding-left:18px}
-li{margin:5px 0;color:var(--body)}
-table{width:100%;border-collapse:collapse}
-th,td{padding:12px 10px;border-bottom:1px solid #ece5dd;text-align:left;vertical-align:top}
-th{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#7d8994;background:var(--soft)}
-.summary{
-  background:var(--navy);color:#fff;border-radius:26px;padding:26px;margin-top:24px;
-}
-.summary h3{color:#fff;font-size:32px}
-.summary p{color:#dfe7ee}
-.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
-.summary-item{border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px}
-.summary-item .k{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:900}
-.summary-item .v{font-size:15px;font-weight:800;margin-top:3px}
-.notes textarea{
-  width:100%;min-height:140px;border:1px solid var(--line);border-radius:16px;padding:14px;font:inherit;color:var(--ink);background:#fff
-}
-.footer{background:var(--navy);color:#d7e0e8;padding:22px 7%;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-@media(max-width:900px){
-  .c8,.c7,.c6,.c5,.c4,.c3{grid-column:span 12}
-  .summary-grid{grid-template-columns:1fr}
-}
-@media print{
-  body{background:#fff}
-  .shell{box-shadow:none}
-  .option:hover{transform:none}
-}
-</style>
-</head>
-<body>
-<div class="shell">
-<header class="hero">
-  <div class="kicker">YURI RAMÍREZ · EDI LIVE · COMMERCIAL CLOSURE</div>
-  <h1>Decisiones para cerrar la próxima edición de El Dueño Indispensable</h1>
-  <p>Objetivo: definir las variables que faltan para terminar Kajabi, cerrar landing + emails y dejar lista la campaña. EDI se mantiene como producto de entrada atractivo, con potencial de alimentar después productos y servicios de mayor ticket.</p>
-  <div class="badges">
-    <span class="badge">Workshop LIVE + 3 semanas implementación</span>
-    <span class="badge">Front-end estratégico</span>
-    <span class="badge">Backend vía Diagnóstico</span>
-    <span class="badge">No auto-NMF</span>
-  </div>
-</header>
+:root{--n:#16233A;--n2:#22324A;--c:#F2E9D8;--g:#C6A15B;--r:#9E3B2E;--i:#182337;--b:#5d6977;--l:#ded6cd;--gr:#49685d}
+*{box-sizing:border-box}body{margin:0;background:#e8e3dd;color:var(--i);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.5}
+.shell{max-width:1480px;margin:auto;background:#fff;min-height:100vh}.hero{padding:70px 7% 54px;background:linear-gradient(125deg,var(--n),var(--n2));color:#fff}
+.k{font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--g)}h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;font-weight:500;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(44px,5.2vw,82px);line-height:1.02;margin-top:10px}h2{font-size:clamp(34px,4vw,58px);line-height:1.05}h3{font-size:27px}h4{font-size:20px}
+.hero p,.lead{font-size:clamp(17px,1.35vw,22px)}.hero p{color:#dce4ec;max-width:1050px}.lead{color:var(--b);max-width:1080px}
+.badges{display:flex;gap:8px;flex-wrap:wrap}.badge{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 10px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.lock{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:22px}.lock div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:13px}.lock small{display:block;color:var(--g);font-size:8px;text-transform:uppercase;letter-spacing:.1em}
+.nav{position:sticky;top:0;z-index:20;background:rgba(22,35,58,.98);padding:9px 4%;overflow:auto;white-space:nowrap}.nav a{color:#dfe5eb;text-decoration:none;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-right:15px}
+.s{padding:58px 7%}.alt{background:var(--c)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:22px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c7{grid-column:span 7}.c6{grid-column:span 6}.c5{grid-column:span 5}.c4{grid-column:span 4}
+.card{border:1px solid var(--l);border-radius:21px;padding:21px;background:#fff;box-shadow:0 14px 34px rgba(22,35,58,.08)}.card p,.card li{color:var(--b)}
+.note{border-left:4px solid var(--g);background:#faf6f0;padding:14px 16px;border-radius:13px;margin-top:16px;color:var(--b)}.note strong{color:var(--n)}.warn{border-left-color:var(--r);background:#fff7f4}.good{border-left-color:var(--gr);background:#f6faf8}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:17px 0}.node{border:1px solid var(--l);background:#fff;border-radius:999px;padding:9px 11px;font-size:10px;font-weight:800;color:#596877}.arrow{font-weight:900;color:#a99d90}
+.day{border:1px solid var(--l);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 14px 34px rgba(22,35,58,.08);margin-top:22px}.dh{display:grid;grid-template-columns:150px 1fr;background:var(--n);color:#fff}.dn{display:flex;align-items:center;justify-content:center;background:var(--g);font:34px Georgia;padding:18px}.dt{padding:16px 20px}.dt h3{color:#fff}.dt p{margin:4px 0;color:#dce5ed}.db{display:grid;grid-template-columns:1.05fr .95fr}.dc{padding:21px}.dc+ .dc{border-left:1px solid var(--l);background:#fcfaf7}
+.timeline{display:grid;grid-template-columns:80px 1fr;gap:8px 12px;margin-top:12px}.time{font-size:9px;font-weight:900;color:var(--g);text-transform:uppercase;letter-spacing:.08em}.act{padding-bottom:10px;border-bottom:1px solid #eee7df;color:var(--b)}
+.script{background:#f5f1eb;border-radius:15px;padding:15px;margin-top:12px;color:#4d5a68;white-space:pre-wrap}.btn{border:0;border-radius:999px;padding:10px 14px;background:#ece5dc;color:var(--n);font-size:9px;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.06em}
+ul{padding-left:18px}li{margin:5px 0}table{width:100%;border-collapse:collapse;margin-top:14px}th,td{padding:11px 9px;border-bottom:1px solid #ece5de;text-align:left;vertical-align:top}th{font-size:8px;text-transform:uppercase;letter-spacing:.11em;background:#f7f3ee;color:#7d8793}td{font-size:13px;color:#53616f}
+.tag{display:inline-block;border:1px solid var(--l);border-radius:999px;padding:5px 8px;font-size:8px;font-weight:900;text-transform:uppercase;letter-spacing:.07em}.y{border-color:#d7b86d;color:#8c6d26;background:#fffaf0}.m{border-color:#b8c9c4;color:#49685d;background:#f4faf7}.ct{border-color:#bcc7d3;color:#40546c;background:#f4f8fb}
+.check{display:flex;gap:9px;margin:8px 0}.box{width:15px;height:15px;border:1.5px solid #b8afa6;border-radius:4px;flex:none}.summary{background:var(--n);color:#fff;border-radius:24px;padding:24px;margin-top:22px}.summary p,.summary li{color:#dbe3ea}.primary{border:0;border-radius:999px;padding:13px 18px;background:var(--g);color:#fff;font-weight:900;cursor:pointer}.footer{background:var(--n);color:#d7dfe7;padding:22px 7%;font-size:9px;text-transform:uppercase;letter-spacing:.1em}
+@media(max-width:950px){.c8,.c7,.c6,.c5,.c4{grid-column:span 12}.lock{grid-template-columns:repeat(2,1fr)}.db{grid-template-columns:1fr}.dc+.dc{border-left:0;border-top:1px solid var(--l)}}@media(max-width:620px){.s,.hero{padding-left:5%;padding-right:5%}.lock{grid-template-columns:1fr}.dh{grid-template-columns:90px 1fr}.timeline{grid-template-columns:64px 1fr}}
+@media print{body{background:#fff}.nav,.btn,.primary{display:none}.card,.day{box-shadow:none;break-inside:avoid}}
+</style></head><body><div class="shell"><header class="hero"><div class="k">YURI RAMÍREZ · EL DUEÑO INDISPENSABLE</div><h1>Commercial & Campaign Playbook V1</h1>
+<p>Plan operativo para lanzar EDI como front-end pagado: dos rutas de adquisición, lanzamiento minimalista por WhatsApp, landing, venta, acompañamiento y medición hasta Diagnóstico.</p>
+<div class="badges"><span class="badge">24 OCT 2026</span><span class="badge">$1,850 MXN</span><span class="badge">ZOOM LIVE</span><span class="badge">REPLAY 7 DÍAS</span><span class="badge">2.5H + 3 SEMANAS</span></div>
+<div class="lock"><div><small>Fecha</small><b>Sáb 24 Oct 2026</b></div><div><small>Precio</small><b>$1,850 MXN</b></div><div><small>Plataforma</small><b>Zoom Meeting</b></div><div><small>Replay</small><b>7 días</b></div><div><small>Delivery</small><b>LIVE + 3 semanas</b></div><div><small>Rutas</small><b>A + B</b></div></div></header>
+<nav class="nav"><a href="#norte">Objetivo</a><a href="#funnel">Funnel</a><a href="#wa">WhatsApp</a><a href="#audios">Audios Yuri</a><a href="#venta">Venta</a><a href="#camp">Campaña</a><a href="#landing">Landing</a><a href="#roles">Roles</a><a href="#metricas">Métricas</a><a href="#check">Checklist</a></nav><section class="s" id="norte"><div class="k">01 · Norte comercial</div><h2>EDI no es el high ticket. Es la puerta de entrada pagada.</h2>
+<p class="lead">La venta de $1,850 debe captar al dueño correcto, darle una experiencia real con la metodología de Yuri y producir evidencia de necesidad para que, cuando corresponda, avance a Diagnóstico.</p>
+<div class="flow"><span class="node">Ad / Contenido</span><span class="arrow">→</span><span class="node">EDI $1,850</span><span class="arrow">→</span><span class="node">LIVE</span><span class="arrow">→</span><span class="node">3 semanas</span><span class="arrow">→</span><span class="node">Need Signal</span><span class="arrow">→</span><span class="node">Diagnóstico</span><span class="arrow">→</span><span class="node">Qualification</span><span class="arrow">→</span><span class="node">Route</span></div>
+<div class="note good"><strong>Guardrail:</strong> EDI puede generar backend, pero nunca manda directo a NMF. El puente sigue siendo Need Signal → Diagnóstico → Qualification → Route.</div></section><section class="s alt" id="funnel"><div class="k">02 · Arquitectura de adquisición</div><h2>Dos rutas activas, una sola oferta.</h2><div class="grid">
+<div class="card c6"><div class="k">Ruta A · compra directa</div><h3>Ads / Contenido → Landing → Checkout</h3><p>Para personas con intención suficiente para evaluar la oferta directamente.</p><ul><li>Baseline de conversión más limpio.</li><li>Ideal para retargeting, audiencia caliente y contenido de alta identificación.</li><li>CTA a la misma oferta de $1,850.</li></ul></div>
+<div class="card c6"><div class="k">Ruta B · calentamiento</div><h3>Ads / Contenido → WhatsApp 3 días → Landing → Checkout</h3><p>Para quien reconoce el problema, pero necesita más contexto y confianza.</p><ul><li>Audio + texto + interacción corta.</li><li>No regalamos otro workshop.</li><li>El grupo vende el criterio; la landing presenta la oferta completa.</li></ul></div>
+</div><div class="note"><strong>Recomendación técnica:</strong> si no retrasa producción, usar una mini página/form antes del grupo para capturar nombre, email, source y campaign; luego redirigir al WhatsApp. Si agrega fricción, lanzar primero con link trackeado y corregir en V2.</div></section><section class="s" id="wa"><div class="k">03 · Lanzamiento minimalista · WhatsApp</div><h2>Tres días para cambiar cómo el dueño entiende su problema.</h2>
+<p class="lead">Cada día tiene una sola función. Yuri pone criterio y autoridad; Marissa sostiene la conversación; Carel mide y conecta la oferta.</p>
+<div class="note warn"><strong>Importante:</strong> este es el grupo de PRELANZAMIENTO. Después de comprar, el cliente entra a otro grupo de IMPLEMENTACIÓN de la cohorte 24 Oct. No mezclar prospectos con compradores.</div><div class="day"><div class="dh"><div class="dn">DÍA 1</div><div class="dt"><h3>IDENTIFICACIÓN · “Todo termina pasando por ti”</h3><p>Objetivo: que la persona diga “eso me pasa”. Cero venta dura.</p></div></div>
+<div class="db"><div class="dc"><div class="k">Secuencia del día</div><div class="timeline"><div class="time">8:30 AM</div><div class="act"><strong>Marissa:</strong> bienvenida + regla del grupo: 3 días, una idea diaria, nada de spam.</div><div class="time">10:00 AM</div><div class="act"><strong>Yuri · Audio 01 (2–3 min):</strong> todo te preguntan, tú destrabas, tú decides, tú corriges.</div><div class="time">10:10 AM</div><div class="act"><strong>Marissa:</strong> 4 síntomas + pregunta A/B/C/D.</div><div class="time">2:00 PM</div><div class="act"><strong>Interacción:</strong> Marissa responde a participantes; no vender.</div><div class="time">6:30 PM</div><div class="act"><strong>Cierre:</strong> resumen + teaser: mañana, por qué delegar no siempre resuelve.</div></div>
+<div class="script" id="d1">MENSAJE DE REFUERZO DÍA 1
 
-<section class="section">
-  <div class="section-no">01 · Rol comercial</div>
-  <h2>EDI no necesita maximizar ticket. Necesita maximizar entrada correcta.</h2>
-  <p class="lead">La lógica comercial es: precio suficientemente atractivo para facilitar entrada, pero con valor suficiente para filtrar compradores reales y permitir una experiencia que después pueda abrir oportunidades de mayor valor.</p>
-  <div class="flow">
-    <div class="node">Contenido / Ads</div><div class="arrow">→</div>
-    <div class="node">EDI</div><div class="arrow">→</div>
-    <div class="node">Implementación</div><div class="arrow">→</div>
-    <div class="node">Need Signal</div><div class="arrow">→</div>
-    <div class="node">Diagnóstico</div><div class="arrow">→</div>
-    <div class="node">Route</div>
-  </div>
-  <div class="rule green"><strong>Guardrail:</strong> EDI no manda directamente a NMF ni califica automáticamente. El backend sigue pasando por Diagnóstico → Qualification → Route.</div>
-</section>
+Si tu negocio ya vende y ya tienes equipo, pero:
+A) todo te lo preguntan,
+B) tú sigues destrabando,
+C) si no revisas no avanza,
+D) te vas un día y aparecen 10 pendientes...
 
-<section class="section">
-  <div class="section-no">02 · Funnel de campaña</div>
-  <h2>Dos rutas comerciales para probar</h2>
-  <p class="lead">La landing debe existir como destino central en ambos modelos. WhatsApp puede funcionar como una capa de calentamiento, no como sustituto permanente de la landing.</p>
+puede que el negocio haya aprendido a funcionar alrededor de ti.
 
-  <div class="grid">
-    <label class="option recommended c6">
-      <input type="checkbox" name="funnel" value="Ruta A · Ads/Contenido → Landing → Checkout" checked>
-      <div class="meta">Ruta A · Control</div>
-      <h3>Directo a Landing</h3>
-      <div class="flow">
-        <div class="node">Ads / contenido</div><div class="arrow">→</div>
-        <div class="node">Landing</div><div class="arrow">→</div>
-        <div class="node">Checkout</div>
-      </div>
-      <p><strong>Ventaja:</strong> camino corto, fácil de medir y nos da una referencia clara de conversión.</p>
-      <ul>
-        <li>Mejor para tráfico caliente o con alta intención.</li>
-        <li>Nos da el baseline comercial.</li>
-        <li>Landing explica oferta completa.</li>
-      </ul>
-    </label>
+¿Cuál te pasa más: A, B, C o D?</div><button class="btn" onclick="copyBlock('d1',this)">Copiar mensaje</button></div>
+<div class="dc"><div class="k">Brief · Audio Yuri</div><h4>“Tu negocio creció, pero tú sigues siendo el sistema”</h4><p><strong>Duración:</strong> 2–3 min</p><ul><li>Abrir con una escena real.</li><li>Nombrar 3–4 síntomas concretos.</li><li>Separar crecimiento de autonomía.</li><li>Cerrar con una pregunta, no con oferta.</li></ul><div class="script">GUION BASE — no leer mecánicamente
 
-    <label class="option c6">
-      <input type="checkbox" name="funnel" value="Ruta B · Ads/Contenido → WhatsApp 3 días → Landing → Checkout">
-      <div class="meta">Ruta B · Test</div>
-      <h3>WhatsApp · 3 días</h3>
-      <div class="flow">
-        <div class="node">Ads / contenido</div><div class="arrow">→</div>
-        <div class="node">Grupo WA</div><div class="arrow">→</div>
-        <div class="node">3 días</div><div class="arrow">→</div>
-        <div class="node">Landing</div>
-      </div>
-      <p><strong>Objetivo:</strong> educar, subir intención y llevar al cierre después de tres días de contenido corto.</p>
-      <ul>
-        <li>Día 1: problema + identificación.</li>
-        <li>Día 2: criterio + error común.</li>
-        <li>Día 3: oportunidad + preparación para oferta.</li>
-        <li>Día 4: CTA a Landing / Checkout.</li>
-      </ul>
-    </label>
-  </div>
+“Si hoy tienes equipo, clientes y movimiento, pero para que las cosas salgan tú tienes que estar revisando, resolviendo o tomando la última decisión, no tienes solamente un problema de carga de trabajo.
 
-  <div class="rule"><strong>Decisión:</strong> Yuri puede elegir <strong>Ruta A, Ruta B o ambas</strong>. Si se ejecutan las dos, la Landing sigue siendo el centro de conversión y WhatsApp funciona como capa de calentamiento. Con presupuesto limitado, recomendamos activar ambas solo si podemos separar claramente tráfico, UTMs y medición.</div>
+Tienes una operación que aprendió a depender de ti.
 
-  <div class="grid">
-    <div class="card c12">
-      <h3>Qué comparar</h3>
-      <table>
-        <thead><tr><th>Métrica</th><th>Ruta A · Landing</th><th>Ruta B · WhatsApp</th></tr></thead>
-        <tbody>
-          <tr><td>Costo por visita/intención</td><td>Landing visit / checkout start</td><td>Entrada a grupo / participación</td></tr>
-          <tr><td>Conversión a compra</td><td>Landing → Purchase</td><td>Grupo → Purchase</td></tr>
-          <tr><td>CAC</td><td>Spend / buyers</td><td>Spend / buyers</td></tr>
-          <tr><td>Velocidad</td><td>Compra directa</td><td>3–4 días de nurture</td></tr>
-          <tr><td>Calidad</td><td>Show-up + implementación</td><td>Show-up + implementación</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+Hoy no quiero que cambies nada. Solo identifica esto: ¿en qué parte de tu negocio sigues siendo el sistema?”</div></div></div></div><div class="day"><div class="dh"><div class="dn">DÍA 2</div><div class="dt"><h3>REFRAME · “Delegar no es soltar”</h3><p>Objetivo: romper una creencia y elevar criterio.</p></div></div>
+<div class="db"><div class="dc"><div class="k">Secuencia del día</div><div class="timeline"><div class="time">9:00 AM</div><div class="act"><strong>Marissa:</strong> conecta con el día 1.</div><div class="time">10:00 AM</div><div class="act"><strong>Yuri · Audio 02 (3–4 min):</strong> tarea delegada sin criterio/autoridad/proceso vuelve al dueño.</div><div class="time">10:15 AM</div><div class="act"><strong>Refuerzo:</strong> Delegar tarea ≠ transferir responsabilidad.</div><div class="time">2:30 PM</div><div class="act"><strong>Micro ejercicio:</strong> ¿qué ya delegaste y regresó? ¿falta criterio, autoridad, proceso o medición?</div><div class="time">7:00 PM</div><div class="act"><strong>Teaser:</strong> mañana, las 3 etapas para intervenir una dependencia real.</div></div>
+<div class="script" id="d2">MENSAJE DE REFUERZO DÍA 2
 
-<section class="section">
-  <div class="section-no">03 · Precio</div>
-  <h2>Precio de entrada con lógica de lanzamiento</h2>
-  <p class="lead">EDI funciona como front-end estratégico: debe ser suficientemente accesible para facilitar entrada, pero conservar valor percibido y compromiso. La meta no es maximizar el ticket de esta primera compra; es atraer al dueño correcto, darle una experiencia real con Yuri y abrir después el camino hacia Diagnóstico y, cuando exista fit, una solución de mayor ticket.</p>
+Delegar una tarea no significa que dejaste de ser indispensable.
 
-  <div class="grid">
-    <label class="option recommended c6">
-      <input type="radio" name="price" value="$1,497 MXN · Precio lanzamiento" checked>
-      <div class="meta">Recomendación · próxima edición</div>
-      <div class="price">$1,497</div>
-      <h4>Precio lanzamiento</h4>
-      <ul>
-        <li>Reduce fricción de compra y facilita volumen de entrada.</li>
-        <li>Se mantiene suficientemente alto para cuidar compromiso y percepción de valor.</li>
-        <li>Es coherente con la función de EDI como puerta de entrada al ecosistema.</li>
-        <li>Permite aprender CAC, show-up, implementación y backend sin exigir monetización máxima en el front-end.</li>
-      </ul>
-      <p class="small">Este sería el precio comunicado para la siguiente edición LIVE.</p>
-    </label>
+Si la persona no tiene:
+• criterio para decidir,
+• autoridad para actuar,
+• contexto suficiente,
+• un proceso mínimo,
+• y una forma clara de saber si salió bien,
 
-    <label class="option c6">
-      <input type="radio" name="price" value="$1,850 MXN · Precio regular">
-      <div class="meta">Referencia de valor</div>
-      <div class="price">$1,850</div>
-      <h4>Precio regular</h4>
-      <ul>
-        <li>Funciona como referencia estable de valor.</li>
-        <li>Permite comunicar que $1,497 es un precio especial de lanzamiento de esta edición.</li>
-        <li>No obliga a mantener el workshop permanentemente en descuento.</li>
-        <li>Deja espacio para subir ticket más adelante si el piloto demuestra mayor valor y conversión.</li>
-      </ul>
-      <p class="small">La propuesta es conservar $1,850 como precio regular y usar $1,497 únicamente como precio de lanzamiento de la próxima edición.</p>
-    </label>
-  </div>
+la responsabilidad termina regresando al dueño.
 
-  <div class="rule green"><strong>Propuesta comercial:</strong> <strong>Precio regular $1,850 MXN</strong> · <strong>Precio lanzamiento próxima edición $1,497 MXN</strong>. Así cuidamos valor percibido, damos una razón real para actuar ahora y mantenemos EDI accesible como producto de entrada.</div>
+¿Qué has “delegado” que sigue regresando a ti?</div><button class="btn" onclick="copyBlock('d2',this)">Copiar mensaje</button></div>
+<div class="dc"><div class="k">Brief · Audio Yuri</div><h4>“El problema no es delegar más. Es construir para que no regrese.”</h4><p><strong>Duración:</strong> 3–4 min</p><ul><li>Usar un ejemplo simple y realista.</li><li>Explicar por qué vuelve al dueño.</li><li>Introducir responsabilidad vs. tarea.</li><li>Sembrar que existe una forma concreta de intervenir.</li></ul><div class="script">GUION BASE
 
-  <div class="rule red"><strong>Guardrail:</strong> no convertir EDI en high ticket. El objetivo comercial es: compra accesible → experiencia → implementación → Need Signal cuando aplique → Diagnóstico → Route. El backend puede capturar mayor valor después.</div>
-</section>
+“Muchas veces me dicen: ‘Yuri, ya delegué’. Pero cuando revisamos qué pasó, en realidad pasaron una tarea.
 
-<section class="section">
-  <div class="section-no">04 · Fecha</div>
-  <h2>Seleccionar la próxima edición</h2>
-  <div class="grid">
-    <label class="option c4">
-      <input type="radio" name="date" value="Sábado 17 de octubre de 2026">
-      <div class="meta">Opción A</div>
-      <h3>17 OCT</h3>
-      <p>Más rápida. Menos aire para cerrar landing, correos, campaña y QA.</p>
-    </label>
-    <label class="option recommended c4">
-      <input type="radio" name="date" value="Sábado 24 de octubre de 2026" checked>
-      <div class="meta">Opción B</div>
-      <h3>24 OCT</h3>
-      <p>Balance entre velocidad y tiempo suficiente para comercial + QA + campaña.</p>
-    </label>
-    <label class="option c4">
-      <input type="radio" name="date" value="Sábado 31 de octubre de 2026">
-      <div class="meta">Opción C</div>
-      <h3>31 OCT</h3>
-      <p>Más tiempo de preparación, pero retrasa aprendizaje del piloto.</p>
-    </label>
-  </div>
-</section>
+Soltar no es desaparecer. Soltar es construir suficiente claridad para que una responsabilidad pueda vivir fuera de ti.”</div></div></div></div><div class="day"><div class="dh"><div class="dn">DÍA 3</div><div class="dt"><h3>MECANISMO · “Soltar → Construir → Medir”</h3><p>Objetivo: revelar el método y preparar la compra del día siguiente.</p></div></div>
+<div class="db"><div class="dc"><div class="k">Secuencia del día</div><div class="timeline"><div class="time">9:00 AM</div><div class="act"><strong>Marissa:</strong> hoy cerramos con qué haces después de detectar la dependencia.</div><div class="time">10:00 AM</div><div class="act"><strong>Yuri · Audio 03 (3–4 min):</strong> SOLTAR → CONSTRUIR/DOCUMENTAR → MEDIR.</div><div class="time">10:20 AM</div><div class="act"><strong>Visual:</strong> gráfico simple de las 3 etapas.</div><div class="time">3:00 PM</div><div class="act"><strong>Pre-oferta:</strong> mañana abrimos lugares para trabajar esto en vivo + 3 semanas.</div><div class="time">7:00 PM</div><div class="act"><strong>Anticipación:</strong> 24 Oct · Zoom · 2.5h LIVE + 3 semanas · replay 7 días. Sin link todavía.</div></div>
+<div class="script" id="d3">MENSAJE DE REFUERZO DÍA 3
 
-<section class="section">
-  <div class="section-no">05 · Plataforma LIVE</div>
-  <h2>¿Dónde se entrega?</h2>
-  <div class="grid">
-    <label class="option recommended c6">
-      <input type="radio" name="platform" value="Zoom Meeting" checked>
-      <div class="meta">Recomendación</div>
-      <h3>Zoom Meeting</h3>
-      <ul>
-        <li>Más adecuado para workshop participativo.</li>
-        <li>Permite interacción, preguntas y ejercicios.</li>
-        <li>Mejor lectura de asistencia y engagement.</li>
-        <li>Más coherente con implementación posterior.</li>
-      </ul>
-    </label>
-    <label class="option c6">
-      <input type="radio" name="platform" value="YouTube Live">
-      <div class="meta">Alternativa</div>
-      <h3>YouTube Live</h3>
-      <ul>
-        <li>Más simple como broadcast.</li>
-        <li>Menor interacción directa.</li>
-        <li>Menos recomendable para workshop pagado con ejercicios.</li>
-        <li>Útil más adelante como canal abierto o secundario.</li>
-      </ul>
-    </label>
-  </div>
-</section>
+La secuencia no es “delega y espera”.
 
-<section class="section">
-  <div class="section-no">06 · Replay</div>
-  <h2>Política de grabación</h2>
-  <div class="grid">
-    <label class="option recommended c4">
-      <input type="radio" name="replay" value="Replay 7 días" checked>
-      <div class="meta">Recomendación</div>
-      <h3>7 días</h3>
-      <p>Conserva urgencia, protege la experiencia LIVE y da margen ante imprevistos.</p>
-    </label>
-    <label class="option c4">
-      <input type="radio" name="replay" value="Replay 48–72 horas">
-      <div class="meta">Opción</div>
-      <h3>48–72 h</h3>
-      <p>Más urgencia y menos consumo tardío.</p>
-    </label>
-    <label class="option c4">
-      <input type="radio" name="replay" value="Sin replay">
-      <div class="meta">Opción</div>
-      <h3>Sin replay</h3>
-      <p>Máxima presión de asistencia, pero más riesgo ante imprevistos reales.</p>
-    </label>
-  </div>
-</section>
+1. SOLTAR
+Elegir una responsabilidad real que hoy depende de ti.
 
-<section class="section">
-  <div class="section-no">07 · Landing + Emails</div>
-  <h2>Lo que se termina en cuanto se tomen estas decisiones</h2>
-  <div class="grid">
-    <div class="card c6">
-      <h3>Landing EDI</h3>
-      <ul>
-        <li>Hero: dueño indispensable / dependencia operativa.</li>
-        <li>Problema y costo de seguir igual.</li>
-        <li>Qué cambia durante EDI.</li>
-        <li>Workshop LIVE 2.5h + 3 semanas.</li>
-        <li>SOLTAR → CONSTRUIR/DOCUMENTAR → MEDIR.</li>
-        <li>Para quién / para quién no.</li>
-        <li>Yuri + autoridad.</li>
-        <li>Oferta: fecha, hora, precio, replay.</li>
-        <li>FAQ.</li>
-        <li>CTA → Ghost Offer Checkout.</li>
-      </ul>
-    </div>
-    <div class="card c6">
-      <h3>Email System</h3>
-      <p><strong>Campaña:</strong></p>
-      <ul>
-        <li>Apertura / problema.</li>
-        <li>Identificación.</li>
-        <li>Criterio / reframe.</li>
-        <li>Caso / evidencia.</li>
-        <li>Oferta.</li>
-        <li>Objeciones.</li>
-        <li>Urgencia / cierre.</li>
-      </ul>
-      <p><strong>Cliente:</strong></p>
-      <ul>
-        <li>Purchase confirmation.</li>
-        <li>Prework.</li>
-        <li>T-72 / T-24 / T-2.</li>
-        <li>Decision Final.</li>
-        <li>Week 2 / Week 3 / Week 4.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+2. CONSTRUIR / DOCUMENTAR
+Dar contexto, criterio, proceso y límites.
 
-<section class="section">
-  <div class="section-no">08 · Qué se activa después de la decisión</div>
-  <h2>De cierre comercial a campaña agresiva</h2>
-  <p class="lead">En cuanto Yuri confirme fecha, precio, plataforma, replay y ruta comercial, dejamos de diseñar y pasamos a ejecución. El objetivo es tener EDI activo y vendiendo para poder avanzar inmediatamente al Technical Build de Diagnóstico.</p>
+3. MEDIR
+Comprobar si realmente dejó de regresar.
 
-  <div class="grid">
-    <div class="card c4">
-      <h3>1 · Cerrar producto</h3>
-      <ul>
-        <li>Fecha y hora definitivas.</li>
-        <li>Zoom / plataforma.</li>
-        <li>Precio regular + lanzamiento.</li>
-        <li>Replay.</li>
-        <li>Workbook y materiales.</li>
-      </ul>
-    </div>
-    <div class="card c4">
-      <h3>2 · Cerrar conversión</h3>
-      <ul>
-        <li>Landing final.</li>
-        <li>Ghost Offer / Checkout.</li>
-        <li>Thank You Page.</li>
-        <li>Emails de campaña.</li>
-        <li>Emails customer journey.</li>
-      </ul>
-    </div>
-    <div class="card c4">
-      <h3>3 · Activar venta</h3>
-      <ul>
-        <li>Campaña Meta.</li>
-        <li>Ruta A / Ruta B / ambas.</li>
-        <li>Contenido orgánico.</li>
-        <li>WhatsApp 3 días si se aprueba.</li>
-        <li>Medición de CAC, show-up e implementación.</li>
-      </ul>
-    </div>
-  </div>
+Mañana abrimos lugares para EL DUEÑO INDISPENSABLE:
+workshop LIVE con Yuri + 3 semanas de implementación.</div><button class="btn" onclick="copyBlock('d3',this)">Copiar mensaje</button></div>
+<div class="dc"><div class="k">Brief · Audio Yuri</div><h4>“No necesitas soltar todo. Necesitas intervenir una dependencia correctamente.”</h4><p><strong>Duración:</strong> 3–4 min</p><ul><li>Presentar 3 etapas sin sobreexplicar.</li><li>Trabajar sobre UNA responsabilidad concreta.</li><li>El éxito se mide, no se siente.</li><li>Cerrar: mañana explico cómo lo trabajaremos juntos.</li></ul><div class="script">GUION BASE
 
-  <div class="rule"><strong>Secuencia de proyecto:</strong> EDI comercialmente activo → campaña corriendo → continuar Technical Build de Diagnóstico. No esperamos a terminar todas las dependencias futuras de EDI para seguir con Diagnóstico.</div>
-</section>
+“Detectar que todo depende de ti sirve, pero no cambia nada por sí solo.
 
-<section class="section">
-  <div class="section-no">09 · Decisión final</div>
-  <h2>Selección para cerrar EDI</h2>
-  <p class="lead">Marca las opciones. El resumen se actualiza automáticamente para enviar la decisión al equipo.</p>
+Primero: SOLTAR. Elegir una responsabilidad concreta.
+Segundo: CONSTRUIR. Dar contexto, criterio, límites e instrucciones.
+Tercero: MEDIR. Si en dos semanas todo volvió a ti, no soltaste; solo pausaste.
 
-  <div class="summary">
-    <h3>Resumen seleccionado</h3>
-    <div class="summary-grid">
-      <div class="summary-item"><div class="k">Funnel</div><div class="v" id="sumFunnel"></div></div>
-      <div class="summary-item"><div class="k">Precio</div><div class="v" id="sumPrice"></div></div>
-      <div class="summary-item"><div class="k">Fecha</div><div class="v" id="sumDate"></div></div>
-      <div class="summary-item"><div class="k">Plataforma</div><div class="v" id="sumPlatform"></div></div>
-      <div class="summary-item"><div class="k">Replay</div><div class="v" id="sumReplay"></div></div>
-      <div class="summary-item"><div class="k">Delivery</div><div class="v">LIVE 2.5h + 3 semanas de implementación</div></div>
-    </div>
-  </div>
+Eso es lo que vamos a trabajar en El Dueño Indispensable. Mañana les comparto cómo entrar.”</div></div></div></div></section><section class="s alt" id="audios"><div class="k">04 · Pack de grabación Yuri</div><h2>Grabar todo en una sola sesión de 15–20 minutos.</h2><p class="lead">No necesitamos que Yuri esté todo el día en el grupo. Necesitamos piezas breves y grabadas con anticipación.</p><div class="grid">
+<div class="card c4"><div class="k">Obligatorio</div><h3>Audio 01</h3><p>Identificación · 2–3 min.</p></div>
+<div class="card c4"><div class="k">Obligatorio</div><h3>Audio 02</h3><p>Delegar ≠ soltar · 3–4 min.</p></div>
+<div class="card c4"><div class="k">Obligatorio</div><h3>Audio 03</h3><p>Soltar → Construir → Medir · 3–4 min.</p></div>
+<div class="card c4"><div class="k">Obligatorio</div><h3>Audio 04</h3><p>Apertura de venta · 2–3 min.</p></div>
+<div class="card c4"><div class="k">Recomendado</div><h3>Audio 05</h3><p>Objeciones · 2–3 min.</p></div>
+<div class="card c4"><div class="k">Recomendado</div><h3>Audio 06</h3><p>Cierre de inscripciones · 60–90 sec.</p></div></div>
+<div class="note"><strong>Voz:</strong> caso → criterio → conclusión → acción. Los guiones son mapas, no teleprompter obligatorio.</div></section><section class="s" id="venta"><div class="k">05 · Apertura de venta · Día 4</div><h2>Ahora sí vendemos.</h2><div class="grid">
+<div class="card c7"><div class="timeline"><div class="time">9:00 AM</div><div class="act"><strong>Marissa:</strong> “Ya están abiertos los lugares” + ficha corta.</div><div class="time">9:05 AM</div><div class="act"><strong>Yuri · Audio 04:</strong> por qué existe EDI, para quién y qué harán.</div><div class="time">9:15 AM</div><div class="act"><strong>Link a Landing.</strong> No mandar solo checkout.</div><div class="time">1:00 PM</div><div class="act"><strong>FAQ + DM humano</strong> a quien mostró intención real.</div><div class="time">6:30 PM</div><div class="act"><strong>Refuerzo:</strong> LIVE + grupo compradores + Week 2/3/4 + replay.</div></div></div>
+<div class="card c5"><div class="k">Ficha comercial</div><h3>El Dueño Indispensable</h3><p><b>24 Oct 2026</b><br>Zoom Meeting<br>2.5h LIVE<br>3 semanas de implementación<br>Grupo privado compradores<br>Replay 7 días</p><h2>$1,850 MXN</h2><p>Una sola exhibición.</p></div></div>
+<div class="card" style="margin-top:16px"><div class="k">Guion base · Audio 04</div><div class="script">“Durante estos tres días hablamos de qué pasa cuando tu negocio ya creció, pero sigue escalando todo hacia ti.
 
-  <div class="notes" style="margin-top:20px">
-    <h3>Notas / cambios de Yuri</h3>
-    <textarea id="notesText" placeholder="Escribe aquí cualquier ajuste: hora, precio distinto, modalidad, condiciones de replay, etc."></textarea>
-  </div>
+Por eso creé El Dueño Indispensable.
 
-  <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-    <button id="copyBtn" type="button" style="border:0;border-radius:999px;padding:13px 18px;background:var(--gold);color:#fff;font-weight:900;letter-spacing:.04em;cursor:pointer">COPIAR RESPUESTAS</button>
-    <span id="copyStatus" class="small" style="align-self:center"></span>
-  </div>
-</section>
+El 24 de octubre vamos a trabajar en vivo durante 2 horas y media. No quiero que salgas con 40 ideas; quiero que elijas una dependencia real de tu negocio, tomes una decisión y salgas con una responsabilidad que vas a intervenir.
 
-<footer class="footer">YR · EDI LIVE · COMMERCIAL CLOSURE DECISION SHEET · SEPTIEMBRE 2026</footer>
+Y no termina en Zoom. Durante las siguientes 3 semanas vamos a trabajar SOLTAR, CONSTRUIR / DOCUMENTAR y MEDIR.
+
+La inversión es de $1,850 pesos.
+
+Si esto describe el punto en el que está tu negocio, debajo te dejo todos los detalles y el acceso.”</div></div>
+<div class="note good"><strong>Urgencia real:</strong> usar fecha, capacidad y cierre de inscripción reales. No inventar “últimos lugares” ni contadores falsos.</div></section><section class="s alt" id="camp"><div class="k">06 · Campaña</div><h2>Agresiva en claridad y frecuencia; no en exageración.</h2><p class="lead">Repetimos problema, mecanismo y oferta desde distintos ángulos hasta que el dueño correcto se identifique.</p><div class="grid">
+<div class="card c4"><div class="k">Ángulo 01</div><h3>Todo pasa por ti</h3><p>Dolor central.</p></div>
+<div class="card c4"><div class="k">Ángulo 02</div><h3>Tu equipo pregunta todo</h3><p>Falta arquitectura de decisión.</p></div>
+<div class="card c4"><div class="k">Ángulo 03</div><h3>Delegaste, pero regresó</h3><p>Tarea ≠ responsabilidad.</p></div>
+<div class="card c4"><div class="k">Ángulo 04</div><h3>Si tú no estás, se detiene</h3><p>Dependencia visible.</p></div>
+<div class="card c4"><div class="k">Ángulo 05</div><h3>El dueño se volvió sistema</h3><p>Reframe de ingeniería operativa.</p></div>
+<div class="card c4"><div class="k">Ángulo 06</div><h3>Soltar · Construir · Medir</h3><p>Mecanismo; ideal para retargeting.</p></div></div>
+<table><thead><tr><th>Fase</th><th>Objetivo</th><th>Ruta A</th><th>Ruta B</th><th>Refuerzo</th></tr></thead><tbody>
+<tr><td>Preparación</td><td>Activos listos</td><td>Landing + tracking</td><td>Grupo + acceso</td><td>Contenido identificación</td></tr>
+<tr><td>Warm-up</td><td>Reconocimiento</td><td>Ads problema</td><td>Ads invitación grupo</td><td>Stories + Reel + email</td></tr>
+<tr><td>D1–D3</td><td>Elevar criterio</td><td>Continúa directa</td><td>Audios WhatsApp</td><td>Stories alineadas</td></tr>
+<tr><td>Open Cart</td><td>Comprar</td><td>Landing</td><td>Grupo → Landing</td><td>Email + Stories + retargeting</td></tr>
+<tr><td>Middle</td><td>Objeciones</td><td>Retargeting</td><td>FAQ grupo</td><td>Casos / FAQ</td></tr>
+<tr><td>Close</td><td>Decisión</td><td>Deadline real</td><td>Audio 06</td><td>Email + Stories</td></tr>
+</tbody></table></section><section class="s" id="landing"><div class="k">07 · Landing EDI</div><h2>Sales page de workshop, no página de consultoría.</h2><div class="grid">
+<div class="card c4"><b>01 Hero</b><p>“Tu negocio ya creció. Ahora necesita dejar de depender de ti.” Fecha, delivery, precio, CTA.</p></div>
+<div class="card c4"><b>02 Identificación</b><p>Síntomas concretos.</p></div>
+<div class="card c4"><b>03 Reframe</b><p>No es productividad. El negocio fue construido alrededor del dueño.</p></div>
+<div class="card c4"><b>04 Mecanismo</b><p>SOLTAR → CONSTRUIR / DOCUMENTAR → MEDIR.</p></div>
+<div class="card c4"><b>05 EDI</b><p>Qué es, para quién, qué no es.</p></div>
+<div class="card c4"><b>06 LIVE 2.5h</b><p>Qué trabajarán y Decision Final.</p></div>
+<div class="card c4"><b>07 3 semanas</b><p>Grupo + Week 2/3/4.</p></div>
+<div class="card c4"><b>08 Outputs</b><p>Dependencia, responsable, criterio y éxito.</p></div>
+<div class="card c4"><b>09 Yuri</b><p>Ingeniería Industrial + operación real.</p></div>
+<div class="card c4"><b>10 Evidencia</b><p>Fotos, casos y testimonios autorizados.</p></div>
+<div class="card c4"><b>11 Oferta</b><p>24 Oct · Zoom · $1,850.</p></div>
+<div class="card c4"><b>12 FAQ</b><p>Live, replay, equipo, seguimiento, NMF.</p></div></div>
+<div class="note"><strong>Benchmark:</strong> tomar del modelo de workshop low-ticket la simplicidad y venta directa; no copiar claims, bonos artificiales, tono ni estética.</div></section><section class="s alt" id="roles"><div class="k">08 · Roles</div><h2>Quién hace qué.</h2><table><thead><tr><th>Responsable</th><th>Antes</th><th>WhatsApp 3 días</th><th>Venta</th><th>Post-compra</th></tr></thead><tbody>
+<tr><td><span class="tag y">Yuri</span></td><td>Graba audios 01–06. Aprueba oferta/landing.</td><td>Su voz es el contenido principal; no modera todo el día.</td><td>Audio 04 + FAQ clave.</td><td>Entrega LIVE y participación estratégica.</td></tr>
+<tr><td><span class="tag m">Marissa</span></td><td>Grupo, FAQ, respuestas.</td><td>Abre/cierra día, envía audios, activa respuestas, registra objeciones.</td><td>Dudas comerciales + follow-up humano.</td><td>Administra grupo compradores y reminders.</td></tr>
+<tr><td><span class="tag ct">Carel / CT</span></td><td>Landing, checkout, emails, tracking, pauta, QA.</td><td>Medición diaria + ajustes.</td><td>Retargeting, emails, conversiones.</td><td>Show-up, implementación, Need Signal y Diagnóstico.</td></tr>
+</tbody></table></section><section class="s" id="metricas"><div class="k">09 · Medición</div><h2>No declarar ganadora una ruta solo por CAC.</h2><table><thead><tr><th>Nivel</th><th>Ruta A</th><th>Ruta B</th><th>Downstream</th></tr></thead><tbody>
+<tr><td>Adquisición</td><td>CTR / Landing View / CPC</td><td>Join / costo por entrada / activación</td><td>Source + Campaign</td></tr>
+<tr><td>Conversión</td><td>Checkout / Purchase / CVR / CAC</td><td>Landing click / Purchase / Group→Buyer / CAC</td><td>Revenue EDI</td></tr>
+<tr><td>Calidad</td><td>Attendance / Completion</td><td>Attendance / Completion</td><td>Show-up</td></tr>
+<tr><td>Implementación</td><td>Week 2 / 3 / 4</td><td>Week 2 / 3 / 4</td><td>Implementation Result</td></tr>
+<tr><td>Backend</td><td>Need Signal / Diagnostic</td><td>Need Signal / Diagnostic</td><td>Qualified / Route / eventual sale</td></tr>
+</tbody></table><div class="note good"><strong>North-star del piloto:</strong> costo por comprador correcto + asistencia + implementación + avance a Diagnóstico cuando exista necesidad real.</div></section><section class="s alt" id="check"><div class="k">10 · Checklist</div><h2>Definition of Ready.</h2><div class="grid">
+<div class="card c4"><div class="k">Yuri</div><div class="check"><span class="box"></span>Audio 01</div><div class="check"><span class="box"></span>Audio 02</div><div class="check"><span class="box"></span>Audio 03</div><div class="check"><span class="box"></span>Audio 04</div><div class="check"><span class="box"></span>Audio 05</div><div class="check"><span class="box"></span>Audio 06</div></div>
+<div class="card c4"><div class="k">Funnel</div><div class="check"><span class="box"></span>Landing</div><div class="check"><span class="box"></span>Ghost Offer / Checkout</div><div class="check"><span class="box"></span>Thank You</div><div class="check"><span class="box"></span>Grupo prelaunch</div><div class="check"><span class="box"></span>Grupo compradores</div><div class="check"><span class="box"></span>UTMs</div></div>
+<div class="card c4"><div class="k">Campaña</div><div class="check"><span class="box"></span>Creativos Ruta A</div><div class="check"><span class="box"></span>Creativos Ruta B</div><div class="check"><span class="box"></span>Retargeting</div><div class="check"><span class="box"></span>Emails</div><div class="check"><span class="box"></span>Stories</div><div class="check"><span class="box"></span>Dashboard</div></div>
 </div>
-
+<div class="summary"><h3>EDI comercialmente activo</h3><div class="flow"><span class="node">Ads / Content</span><span class="arrow">→</span><span class="node">Ruta A / B</span><span class="arrow">→</span><span class="node">Landing</span><span class="arrow">→</span><span class="node">Checkout</span><span class="arrow">→</span><span class="node">Thank You</span><span class="arrow">→</span><span class="node">Prework</span><span class="arrow">→</span><span class="node">Event Prep</span></div>
+<p>En ese momento Control Tower puede continuar <b>Diagnóstico · Technical Build</b> mientras EDI sigue adquiriendo y vendiendo.</p><button class="primary" onclick="copySummary(this)">Copiar resumen para equipo</button></div></section><footer class="footer">YR · EDI LIVE · COMMERCIAL & CAMPAIGN PLAYBOOK V1 · 17 SEP 2026</footer></div>
 <script>
-function val(name){
-  const x=document.querySelector('input[name="'+name+'"]:checked');
-  return x?x.value:'—';
-}
-function vals(name){
-  const xs=[...document.querySelectorAll('input[name="'+name+'"]:checked')];
-  return xs.length?xs.map(x=>x.value).join(' + '):'—';
-}
-function update(){
-  document.getElementById('sumFunnel').textContent=vals('funnel');
-  document.getElementById('sumPrice').textContent=val('price');
-  document.getElementById('sumDate').textContent=val('date');
-  document.getElementById('sumPlatform').textContent=val('platform');
-  document.getElementById('sumReplay').textContent=val('replay');
-  document.querySelectorAll('.option').forEach(el=>el.classList.remove('selected'));
-  document.querySelectorAll('.option input:checked').forEach(inp=>inp.closest('.option').classList.add('selected'));
-}
-document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(i=>i.addEventListener('change',update));
+async function c(t,b){try{await navigator.clipboard.writeText(t);let o=b.textContent;b.textContent='COPIADO ✓';setTimeout(()=>b.textContent=o,1300)}catch(e){alert('No se pudo copiar automáticamente')}}
+function copyBlock(id,b){c(document.getElementById(id).innerText,b)}
+function copySummary(b){c(`YR · EDI LIVE · COMMERCIAL & CAMPAIGN PLAYBOOK V1
 
-document.getElementById('copyBtn').addEventListener('click', async ()=>{
-  const notes = document.getElementById('notesText').value.trim() || 'Sin notas adicionales';
-  const text = `YR · EDI LIVE · DECISIONES COMERCIALES
+DECISIONES
+24 Oct 2026 · Zoom · $1,850 MXN · Replay 7 días · LIVE 2.5h + 3 semanas
+Rutas A + B
 
-RUTA(S):
-${vals('funnel')}
+RUTA A
+Ads/Contenido → Landing → Checkout
 
-PRECIO:
-${val('price')}
+RUTA B
+Ads/Contenido → WhatsApp 3 días → Landing → Checkout
 
-FECHA:
-${val('date')}
+WHATSAPP
+D1 Identificación: todo termina pasando por ti.
+D2 Reframe: delegar no es soltar.
+D3 Mecanismo: Soltar → Construir/Documentar → Medir.
+D4 Apertura de venta.
 
-PLATAFORMA:
-${val('platform')}
+AUDIOS YURI
+01 Identificación
+02 Delegar ≠ soltar
+03 Mecanismo
+04 Apertura venta
+05 Objeciones
+06 Cierre
 
-REPLAY:
-${val('replay')}
-
-DELIVERY:
-LIVE 2.5h + 3 semanas de implementación
-
-NOTAS / CAMBIOS:
-${notes}
-
-SIGUIENTE PASO:
-Cerrar landing + Ghost Offer/Checkout + Thank You + emails + campaña. Con EDI activo, continuar Technical Build de Diagnóstico.`;
-  try{
-    await navigator.clipboard.writeText(text);
-    document.getElementById('copyStatus').textContent='✓ Respuestas copiadas. Pégalas en WhatsApp, correo o chat.';
-  }catch(e){
-    document.getElementById('copyStatus').textContent='No se pudo copiar automáticamente. Selecciona el resumen y cópialo manualmente.';
-  }
-});
-update();
-</script>
-</body>
-</html>
+SIGUIENTE
+Landing + Ghost Offer/Checkout + Thank You + Emails + Campaña → EDI activo → Diagnóstico Technical Build.`,b)}
+</script></body></html>
